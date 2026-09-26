@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Stack Fluency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -413,7 +414,7 @@
         <button class="tab-btn" data-tab="vendors" id="vendorsTabBtn">Vendor Stack</button>
         <button class="tab-btn" data-tab="flashcards">Flashcards</button>
         <button class="tab-btn" data-tab="quiz">Scenario Quiz</button>
-        <button class="tab-btn" data-tab="ask">Ask Claude</button>
+
       </div>
       <div class="tab-body" id="tabBody"></div>
     </section>
@@ -1147,8 +1148,7 @@ function renderBody(){
     renderFlashcards(body, l);
   } else if(state.tab === 'quiz'){
     renderQuiz(body, l);
-  } else if(state.tab === 'ask'){
-    renderAsk(body);
+  
   }
 }
 
@@ -1397,73 +1397,6 @@ function chatBubble(t){
   return '<div class="chat-msg '+t.role+'"><span class="who">'+(t.role==='user'?'You':'Claude')+'</span><div class="bubble">'+escapeHtml(t.content)+'</div></div>';
 }
 
-function renderAsk(body){
-  if(!sampleNS){
-    body.innerHTML = '<div class="explainer"><p>Ask Claude isn’t available in this view right now — Claude usage may not be enabled for this account, or the page is open outside claude.ai.</p></div>';
-    return;
-  }
-  var log = state.chat.turns.map(chatBubble).join('');
-  if(state.chat.busy){
-    log += chatBubble({role:'assistant', content: state.chat.streamingText || 'Thinking…'});
-  }
-  body.innerHTML =
-    '<div class="chat-wrap">'+
-      '<div class="chat-log" id="chatLog">'+(log || '<p class="chat-hint">Ask anything about these vendors, layers, or the reference build — e.g. “How does AWS Bedrock’s guardrail layer compare to what I built for Neo FX?”</p>')+'</div>'+
-      '<div class="chat-input-row">'+
-        '<textarea id="chatInput" placeholder="Ask about any layer or vendor..." rows="2"'+(state.chat.busy?' disabled':'')+'></textarea>'+
-        '<button class="btn primary" id="chatSend">'+(state.chat.busy?'Stop':'Ask')+'</button>'+
-      '</div>'+
-      (state.chat.error ? '<p class="chat-error">'+escapeHtml(state.chat.error)+'</p>' : '')+
-    '</div>';
-  var logEl = document.getElementById('chatLog');
-  logEl.scrollTop = logEl.scrollHeight;
-  document.getElementById('chatSend').addEventListener('click', function(){
-    if(state.chat.busy){ if(state.chat.controller) state.chat.controller.abort(); return; }
-    sendChat();
-  });
-  var inputEl = document.getElementById('chatInput');
-  inputEl.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendChat(); }
-  });
-  inputEl.focus();
-}
-
-async function sendChat(){
-  var inputEl = document.getElementById('chatInput');
-  var text = (inputEl.value || '').trim();
-  if(!text || state.chat.busy) return;
-  state.chat.turns.push({role:'user', content:text});
-  state.chat.busy = true;
-  state.chat.streamingText = '';
-  state.chat.error = null;
-  renderBody();
-
-  var ctl = new AbortController();
-  state.chat.controller = ctl;
-  var leading = {role:'user', content: CHAT_RULES + '\n\n--- REFERENCE CONTENT ---\n' + buildContext()};
-  var turnsForCall = [leading].concat(state.chat.turns);
-
-  try{
-    var res = await sampleNS(turnsForCall, {
-      modelTier:'default',
-      cache:false,
-      signal: ctl.signal,
-      onText: function(u){ state.chat.streamingText = u.text; renderBody(); }
-    });
-    state.chat.turns.push({role:'assistant', content: res.text});
-  }catch(e){
-    if(e && e.code === 'cancelled'){
-      if(e.text) state.chat.turns.push({role:'assistant', content: e.text});
-    } else {
-      state.chat.error = chatErrorCopy(e && e.code);
-    }
-  }
-  state.chat.busy = false;
-  state.chat.controller = null;
-  state.chat.streamingText = '';
-  renderBody();
-}
-
 function shuffle(arr){
   for(var i=arr.length-1;i>0;i--){
     var j = Math.floor(Math.random()*(i+1));
@@ -1495,8 +1428,10 @@ function start(data){
   initCapabilities();
 }
 
-window.claude?.hot?.snapshot?.(function(){ return { progress: progress }; });
-if(window.claude?.hot?.ready){ window.claude.hot.ready(start); } else { start(window.claude?.hot?.data ?? {}); }
+
+start({});
 
 })();
 </script>
+
+</body></html>
