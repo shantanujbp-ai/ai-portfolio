@@ -1,0 +1,8 @@
+pendency_id,category,reference_id,description,severity
+PND-0001,lc_discrepancy,LC-0002,Minor discrepancy in shipping documents -- bank referral pending,medium
+PND-0002,lc_discrepancy,LC-0003,Minor discrepancy in shipping documents -- bank referral pending,medium
+PND-0003,lc_discrepancy,LC-0008,Minor discrepancy in shipping documents -- bank referral pending,medium
+PND-0004,lc_discrepancy,LC-0020,Minor discrepancy in shipping documents -- bank referral pending,medium
+PND-0005,remittance_overdue,RMT-0003,Export remittance overdue by 15 days,medium
+PND-0006,remittance_overdue,RMT-0020,Export remittance overdue by 65 days,high
+PND-0007,remittance_overdue,RMT-0030,Export remittance overdue by 44 days,high

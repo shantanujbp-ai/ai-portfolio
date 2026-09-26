@@ -1,0 +1,20 @@
+BANK GUARANTEE -- ISSUANCE ADVICE
+
+Type of Guarantee: Performance Guarantee
+
+Issuing Bank: BANK-004
+
+Applicant: Meridian Global Trading Pvt Ltd
+Beneficiary: Whitfield Industrial Supplies Ltd
+
+Currency and Amount: EUR 84,250.00
+
+Date of Issue: 2026-08-27
+Date of Expiry: 2027-08-26
+
+Guarantee is issued in favour of the beneficiary to secure the applicant's
+performance obligations under the underlying supply contract. Claims under
+this guarantee must be made in writing, accompanied by a signed statement
+of default, before the expiry date stated above.
+
+Current claim amount against this guarantee: None (nil)

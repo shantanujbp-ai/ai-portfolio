@@ -1,0 +1,21 @@
+counterparty_id,name,type,role,country
+BANK-001,First Meridian Bank,bank,issuing_or_advising_bank,India
+BANK-002,Continental Trust Bank,bank,issuing_or_advising_bank,India
+BANK-003,Pacific Rim Bank,bank,issuing_or_advising_bank,India
+BANK-004,Anglo Gulf Bank,bank,issuing_or_advising_bank,India
+BANK-005,Silverline National Bank,bank,issuing_or_advising_bank,India
+CP-001,"Rodriguez, Figueroa and Sanchez",trade_counterparty,buyer,United States
+CP-002,Doyle Ltd,trade_counterparty,buyer,United Arab Emirates
+CP-003,"Mcclain, Miller and Henderson",trade_counterparty,buyer,United Kingdom
+CP-004,Davis and Sons,trade_counterparty,buyer,Singapore
+CP-005,"Guzman, Hoffman and Baldwin",trade_counterparty,buyer,Singapore
+CP-006,"Gardner, Robinson and Lawrence",trade_counterparty,buyer,Germany
+CP-007,Blake and Sons,trade_counterparty,buyer,United States
+CP-008,"Henderson, Ramirez and Lewis",trade_counterparty,buyer,Netherlands
+CP-009,Garcia-James,trade_counterparty,buyer,United States
+CP-010,Abbott-Munoz,trade_counterparty,supplier,Saudi Arabia
+CP-011,Blair PLC,trade_counterparty,supplier,South Africa
+CP-012,Dudley Group,trade_counterparty,supplier,United Arab Emirates
+CP-013,Arnold Ltd,trade_counterparty,supplier,United Arab Emirates
+CP-014,"Mcclure, Ward and Lee",trade_counterparty,supplier,United States
+CP-015,Williams and Sons,trade_counterparty,supplier,Singapore

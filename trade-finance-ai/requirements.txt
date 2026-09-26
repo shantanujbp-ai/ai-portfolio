@@ -1,0 +1,17 @@
+# --- Treasury & Trade POC dependencies ---
+
+python-dotenv==1.0.1      # loads your API key from a local .env file
+pandas>=2.2.3               # builds and cleans the synthetic dataset
+faker>=24.0.0                # generates realistic fictional names/companies for the synthetic data
+anthropic>=0.40.0            # Claude API client
+duckdb>=1.0.0                # local SQL engine for querying the synthetic data
+streamlit>=1.40.0             # the chat web app front end -- 1.40+ needed for the
+                             # built-in microphone widget, st.audio_input
+
+# --- Voice input/output ---
+# Both fully offline, no extra system-level install needed -- pyttsx3 uses
+# your OS's own built-in voices (SAPI5 on Windows), and faster-whisper
+# downloads its own model on first use. Ported from AI-Agent-Project's
+# Phase 8, same packages.
+faster-whisper>=1.0.0          # offline speech-to-text (CPU, CTranslate2-based Whisper)
+pyttsx3>=2.90                  # offline text-to-speech (wraps your OS's built-in voices)

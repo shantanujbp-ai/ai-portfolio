@@ -1,0 +1,19 @@
+BANK GUARANTEE -- ISSUANCE ADVICE
+
+Type of Guarantee: Advance Payment Guarantee
+
+Issuing Bank: BANK-005
+
+Applicant: Meridian Global Trading Pvt Ltd
+Beneficiary: (beneficiary name to be added once the underlying contract is
+countersigned -- placeholder guarantee text circulated for review only)
+
+Currency and Amount: INR 5,600,000.00
+
+Date of Issue: 2026-08-29
+Date of Expiry: (pending -- guarantee tenor still under negotiation with
+the issuing bank, expected 18-24 months from issue)
+
+This guarantee secures the advance payment made by the beneficiary to the
+applicant under the underlying supply contract, and reduces pro-rata as
+shipments are made against the contract.

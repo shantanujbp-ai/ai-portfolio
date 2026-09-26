@@ -1,0 +1,10 @@
+eefc_txn_id,eefc_account_id,date,txn_type,amount,linked_source_type,linked_source_id,running_balance
+EEFCTXN-0001,EEFC-EUR,2025-11-22,retention_credit,392349.24,remittance,RMT-0022,392349.24
+EEFCTXN-0002,EEFC-EUR,2025-12-17,retention_credit,202780.43,remittance,RMT-0018,595129.67
+EEFCTXN-0003,EEFC-AED,2025-12-19,retention_credit,576245.39,remittance,RMT-0005,576245.39
+EEFCTXN-0004,EEFC-USD,2026-01-17,retention_credit,100274.59,remittance,RMT-0002,100274.59
+EEFCTXN-0005,EEFC-EUR,2026-01-26,retention_credit,27731.83,remittance,RMT-0029,622861.5
+EEFCTXN-0006,EEFC-AED,2026-03-01,retention_credit,200691.75,remittance,RMT-0025,776937.14
+EEFCTXN-0007,EEFC-USD,2026-03-06,retention_credit,149021.77,remittance,RMT-0032,249296.36
+EEFCTXN-0008,EEFC-USD,2026-03-17,retention_credit,713902.9,remittance,RMT-0023,963199.26
+EEFCTXN-0009,EEFC-USD,2026-08-02,retention_credit,453909.65,remittance,RMT-0028,1417108.91

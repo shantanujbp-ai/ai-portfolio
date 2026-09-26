@@ -1,0 +1,22 @@
+# API Keys and secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# ChromaDB local vector store
+chroma_db/
+
+# DuckDB write-ahead log
+*.wal
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/

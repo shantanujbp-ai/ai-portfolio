@@ -1,0 +1,63 @@
+RBI MASTER DIRECTION - RISK MANAGEMENT AND INTER-BANK DEALINGS
+FX HEDGING FRAMEWORK - SUMMARY
+Source: RBI Circular RBI/2023-24/108, A.P. (DIR Series) Circular No. 13, January 5, 2024
+Effective: April 5, 2024
+
+PURPOSE
+This circular establishes the regulatory framework for hedging foreign exchange risks
+in India. It consolidates all directions for foreign exchange transactions including
+cash, tom, spot, and derivative transactions.
+
+USER CLASSIFICATION
+Authorised dealers must classify users into retail and non-retail categories.
+Non-retail users: entities with minimum net worth of INR 500 crore, or
+central government, state governments, residents with foreign currency borrowings
+above USD 10 million, and listed companies.
+Retail users: all entities that do not qualify as non-retail.
+
+PERMITTED INSTRUMENTS FOR RETAIL USERS
+Foreign exchange cash, tom, and spot transactions.
+Forward contracts up to 12 months without underlying documentation for hedging
+contracted exposures up to USD 10 million per financial year.
+Plain vanilla options.
+Cost reduction structures are not permitted for retail users.
+
+PERMITTED INSTRUMENTS FOR NON-RETAIL USERS
+All instruments permitted for retail users.
+Foreign exchange swaps.
+Cross currency swaps.
+Interest rate swaps.
+Cost reduction structures permitted subject to conditions.
+Structured products with prior approval.
+
+DOCUMENTATION REQUIREMENTS BEFORE EXECUTING DERIVATIVE TRANSACTIONS
+Before executing any foreign exchange derivative transaction, authorised dealers must obtain:
+1. User Declaration: Written declaration from the client stating the nature and purpose of the derivative transaction.
+2. Exposure Confirmation: Written confirmation that the underlying exposure is genuine and not artificially created for speculation.
+3. Threshold Documentation: For exposures above prescribed thresholds, supporting documents evidencing the underlying exposure must be submitted to the authorised dealer before execution.
+4. Suitability Assessment: For retail users, the authorised dealer must conduct and document a suitability assessment before offering derivative products.
+5. Appropriateness Assessment: For all users, an appropriateness assessment must be conducted and documented.
+6. ISDA Agreement: For OTC derivatives, an ISDA Master Agreement or equivalent documentation must be in place before first trade execution.
+7. Board Policy Confirmation: The authorised dealer must confirm the transaction falls within its board-approved derivatives policy.
+
+RISK MANAGEMENT REQUIREMENTS
+Authorised dealers must have board-approved policy for derivative transactions.
+Suitability assessment must be conducted for retail users.
+Appropriateness assessment must be conducted for all users.
+Mark-to-market reporting must be provided to clients at regular intervals.
+Dealers must ensure derivatives are used exclusively for hedging, not speculation.
+
+KEY CHANGES FROM PRIOR FRAMEWORK
+Simplified documentation: users can hedge up to USD 10 million without submission
+of underlying documents, subject to self-declaration.
+Dynamic hedging: users may cancel and rebook forward contracts up to limits
+specified by RBI without restriction.
+Net hedging: non-retail users may hedge net exposure across multiple underlying
+transactions.
+Centralised hedging: multinational companies may hedge exposures of overseas
+group entities through Indian authorised dealer.
+
+ENFORCEMENT
+Violations attract penalties under Foreign Exchange Management Act 1999.
+Authorised dealers are responsible for ensuring compliance by their clients.
+RBI may cancel authorised dealer licence for systemic violations.

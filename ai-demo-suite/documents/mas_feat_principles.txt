@@ -1,0 +1,53 @@
+MONETARY AUTHORITY OF SINGAPORE - FEAT PRINCIPLES
+FAIRNESS, ETHICS, ACCOUNTABILITY AND TRANSPARENCY IN AI
+Source: MAS FEAT Principles, 2019, applicable to financial institutions in Singapore
+
+PURPOSE
+The MAS FEAT Principles provide guidance to financial institutions using AI and
+data analytics in Singapore. They establish baseline standards for responsible
+deployment of AI in financial services.
+
+PRINCIPLE 1 - FAIRNESS
+AI models must treat customers fairly and avoid bias in outcomes.
+Credit scoring, insurance underwriting, and investment advisory AI must
+not systematically disadvantage any group of customers.
+Financial institutions must regularly test AI models for discriminatory outcomes.
+Models must be validated across demographic segments before deployment.
+Remediation must be applied when unfair outcomes are detected.
+
+PRINCIPLE 2 - ETHICS
+AI applications must align with ethical norms and societal values.
+Financial institutions must establish an ethics framework for AI governance.
+AI must not be used for predatory pricing, discriminatory practices, or
+market manipulation.
+Human judgment must be retained for decisions with significant customer impact.
+Ethics review must be conducted before deploying new AI applications.
+
+PRINCIPLE 3 - ACCOUNTABILITY
+Financial institutions must be accountable for AI decisions affecting customers.
+A human must be responsible and accountable for every AI model in production.
+Model risk management frameworks must cover AI and ML models.
+Board oversight of AI strategy and risk is required.
+Incident reporting and response procedures must cover AI system failures.
+Customers must have access to human review of automated decisions.
+
+PRINCIPLE 4 - TRANSPARENCY
+Financial institutions must be transparent about their use of AI.
+Customers must be informed when AI is used in decisions affecting them.
+Explanations of AI decisions must be available upon customer request.
+Model documentation must cover purpose, training data, and known limitations.
+Significant changes to AI models must be disclosed where they affect customer outcomes.
+
+AI GOVERNANCE REQUIREMENTS
+Designated AI governance function with board reporting.
+Model inventory covering all AI models in production.
+Regular model validation by independent function.
+Explainability capability for customer-facing AI decisions.
+Ongoing monitoring of model performance and fairness metrics.
+
+IMPLICATIONS FOR FX AND TREASURY AI
+AI-powered FX advisory systems must be explainable to clients.
+Algorithmic trading systems must have human oversight and kill switch.
+AI credit models for trade finance must be validated for bias.
+GenAI systems generating client communications must be grounded and auditable.
+Automated hedging recommendations require human approval before execution.

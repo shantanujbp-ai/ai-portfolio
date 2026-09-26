@@ -1,0 +1,29 @@
+IRREVOCABLE DOCUMENTARY LETTER OF CREDIT -- ISSUANCE ADVICE
+
+Issuing Bank: BANK-003
+Advising Bank: BANK-004
+
+Applicant: Foster-Nguyen
+Beneficiary: Meridian Global Trading Pvt Ltd
+
+Currency: USD
+Amount: (to be confirmed by issuing bank -- awaiting final invoice value)
+
+Date of Issue: 2026-08-30
+Latest Date of Shipment: 2026-10-05
+Date and Place of Expiry: (not stated in this advice -- see full LC text)
+
+Partial Shipments: Allowed
+Transhipment: Not allowed
+
+Documents Required:
+1. Commercial Invoice
+2. Packing List
+3. Bill of Lading
+4. Certificate of Origin
+
+Trade direction: Export (Meridian is the beneficiary/exporter on this shipment)
+
+Note: This is a preliminary swift copy forwarded by the advising bank ahead
+of the full MT700 text; the amount and expiry date fields will follow once
+the issuing bank confirms them.

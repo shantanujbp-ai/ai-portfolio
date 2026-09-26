@@ -1,0 +1,13 @@
+bg_id,type,applicant,beneficiary,issuing_bank,currency,amount,issue_date,expiry_date,status,claim_amount,expiring_within_30_days
+BG-0001,financial,Meridian Global Trading Pvt Ltd,Abbott-Munoz,BANK-004,EUR,66513.71,2026-04-04,2028-03-24,active,0.0,False
+BG-0002,financial,Meridian Global Trading Pvt Ltd,"Gardner, Robinson and Lawrence",BANK-004,EUR,421217.24,2025-10-21,2027-04-14,active,0.0,False
+BG-0003,advance_payment,Meridian Global Trading Pvt Ltd,Abbott-Munoz,BANK-005,INR,330185.24,2025-09-06,2027-08-27,active,0.0,False
+BG-0004,performance,Meridian Global Trading Pvt Ltd,Doyle Ltd,BANK-005,USD,467452.74,2026-05-19,2028-05-08,active,0.0,False
+BG-0005,performance,Meridian Global Trading Pvt Ltd,"Guzman, Hoffman and Baldwin",BANK-005,USD,369402.27,2026-04-18,2028-04-07,claimed,37967.51,False
+BG-0006,performance,Meridian Global Trading Pvt Ltd,"Henderson, Ramirez and Lewis",BANK-001,INR,476177.33,2025-09-13,2027-09-03,active,0.0,False
+BG-0007,advance_payment,Meridian Global Trading Pvt Ltd,Davis and Sons,BANK-003,EUR,367435.23,2026-08-03,2027-07-29,active,0.0,False
+BG-0008,advance_payment,Meridian Global Trading Pvt Ltd,"Mcclure, Ward and Lee",BANK-005,USD,222613.71,2026-04-06,2028-03-26,active,0.0,False
+BG-0009,performance,Meridian Global Trading Pvt Ltd,Davis and Sons,BANK-004,INR,470411.78,2026-07-09,2027-07-04,active,0.0,False
+BG-0010,performance,Meridian Global Trading Pvt Ltd,Garcia-James,BANK-003,EUR,310965.52,2026-05-23,2027-11-14,active,0.0,False
+BG-0011,bid_bond,Meridian Global Trading Pvt Ltd,Davis and Sons,BANK-004,INR,199597.98,2026-08-09,2028-07-29,active,0.0,False
+BG-0012,advance_payment,Meridian Global Trading Pvt Ltd,"Mcclure, Ward and Lee",BANK-002,EUR,157462.49,2026-06-11,2028-05-31,active,0.0,False

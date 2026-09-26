@@ -1,0 +1,61 @@
+shipment_id,direction,counterparty_id,product,quantity_mt,incoterm,origin_port,destination_port,etd,eta,status,invoice_value,currency
+SHP-0001,export,CP-009,Textile Machinery Parts,114.1,DAP,"Nhava Sheva, India",Traciebury,2026-09-09,2026-10-24,booked,250898.29,USD
+SHP-0002,export,CP-004,Organic Chemicals,55.6,EXW,"Nhava Sheva, India",South Joshuastad,2025-11-26,2026-01-02,delivered,100274.59,USD
+SHP-0003,export,CP-008,Pharmaceutical Intermediates,66.8,EXW,"Nhava Sheva, India",West Michael,2026-07-12,2026-08-07,delivered,85404.16,AED
+SHP-0004,export,CP-002,Refined Copper Cathodes,332.3,CFR,"Nhava Sheva, India",Jacquelineland,2026-10-22,2026-11-13,booked,837733.86,AED
+SHP-0005,export,CP-006,Basmati Rice,188.2,CIF,"Nhava Sheva, India",New Jessica,2025-10-27,2025-11-30,delivered,576245.39,AED
+SHP-0006,export,CP-009,Auto Components,85.9,EXW,"Nhava Sheva, India",South Noah,2026-08-21,2026-09-04,delivered,244056.7,USD
+SHP-0007,export,CP-006,Refined Copper Cathodes,118.4,FOB,"Nhava Sheva, India",Lake Mark,2026-08-24,2026-10-08,in_transit,688188.01,USD
+SHP-0008,export,CP-006,Auto Components,329.4,EXW,"Nhava Sheva, India",East Lydiamouth,2025-10-09,2025-11-01,delayed,754287.02,AED
+SHP-0009,export,CP-009,Pharmaceutical Intermediates,135.1,DAP,"Nhava Sheva, India",Adamsborough,2025-11-18,2025-12-14,delivered,375600.08,AED
+SHP-0010,export,CP-009,Steel Coils,50.0,FOB,"Nhava Sheva, India",Jasonfort,2026-03-10,2026-04-03,delayed,734715.42,USD
+SHP-0011,export,CP-002,Textile Machinery Parts,193.9,EXW,"Nhava Sheva, India",Wilkersonmouth,2026-09-26,2026-11-02,booked,459164.91,AED
+SHP-0012,export,CP-005,Organic Chemicals,60.2,EXW,"Nhava Sheva, India",West Donald,2025-09-11,2025-09-28,delivered,151270.94,AED
+SHP-0013,export,CP-009,Cotton Yarn,435.9,CFR,"Nhava Sheva, India",Juliechester,2026-10-09,2026-11-20,booked,718585.56,USD
+SHP-0014,export,CP-009,Pharmaceutical Intermediates,459.7,DAP,"Nhava Sheva, India",Coxberg,2025-12-16,2026-01-04,delivered,289049.53,USD
+SHP-0015,export,CP-001,Auto Components,439.6,FOB,"Nhava Sheva, India",Daviston,2026-10-22,2026-11-20,booked,91092.37,USD
+SHP-0016,export,CP-008,Pharmaceutical Intermediates,86.7,DAP,"Nhava Sheva, India",East Courtneychester,2025-10-11,2025-11-24,delivered,744119.42,USD
+SHP-0017,export,CP-004,Industrial Bearings,202.5,CFR,"Nhava Sheva, India",South Patrickmouth,2025-12-23,2026-02-05,delivered,383623.07,AED
+SHP-0018,export,CP-001,Electronic Components,279.2,DAP,"Nhava Sheva, India",Tashatown,2025-11-06,2025-12-01,delivered,202780.43,EUR
+SHP-0019,export,CP-001,Organic Chemicals,40.1,CIF,"Nhava Sheva, India",Lake Nicoleview,2026-09-13,2026-10-07,booked,251136.13,USD
+SHP-0020,export,CP-008,Auto Components,393.4,EXW,"Nhava Sheva, India",Danielchester,2026-06-09,2026-06-27,delivered,178040.23,AED
+SHP-0021,export,CP-007,Steel Coils,432.6,FOB,"Nhava Sheva, India",South Aaron,2026-10-31,2026-12-02,booked,578892.57,EUR
+SHP-0022,export,CP-002,Auto Components,99.8,DAP,"Nhava Sheva, India",Teresaburgh,2025-10-26,2025-11-08,delivered,392349.24,EUR
+SHP-0023,export,CP-008,Pharmaceutical Intermediates,53.5,DAP,"Nhava Sheva, India",Port Colleenhaven,2026-01-26,2026-03-06,delivered,713902.9,USD
+SHP-0024,export,CP-004,Textile Machinery Parts,451.7,CIF,"Nhava Sheva, India",East Nathaniel,2026-01-05,2026-01-25,delivered,334547.69,EUR
+SHP-0025,export,CP-009,Steel Coils,81.6,CFR,"Nhava Sheva, India",New Stephanie,2026-01-19,2026-02-27,delivered,200691.75,AED
+SHP-0026,export,CP-006,Refined Copper Cathodes,29.8,EXW,"Nhava Sheva, India",New Mariotown,2026-11-14,2026-11-27,booked,437365.82,AED
+SHP-0027,export,CP-003,Cotton Yarn,299.5,CIF,"Nhava Sheva, India",West Natashaport,2025-11-25,2025-12-08,delayed,355133.71,USD
+SHP-0028,export,CP-002,Textile Machinery Parts,330.4,DAP,"Nhava Sheva, India",North John,2026-06-24,2026-07-19,delivered,453909.65,USD
+SHP-0029,export,CP-003,Industrial Bearings,231.3,FOB,"Nhava Sheva, India",North Jessicaland,2025-12-19,2026-01-18,delivered,27731.83,EUR
+SHP-0030,export,CP-009,Industrial Bearings,70.6,CFR,"Nhava Sheva, India",East Donna,2026-06-21,2026-07-07,delivered,751117.26,USD
+SHP-0031,export,CP-005,Electronic Components,492.0,DAP,"Nhava Sheva, India",West Allison,2026-03-14,2026-04-11,delivered,26493.18,AED
+SHP-0032,export,CP-005,Cotton Yarn,445.4,DAP,"Nhava Sheva, India",Brandtside,2026-02-06,2026-02-22,delayed,149021.77,USD
+SHP-0033,export,CP-005,Pharmaceutical Intermediates,246.8,FOB,"Nhava Sheva, India",Lake Larry,2026-10-02,2026-11-02,booked,96607.73,USD
+SHP-0034,export,CP-005,Basmati Rice,371.9,DAP,"Nhava Sheva, India",Samuelhaven,2026-01-25,2026-02-06,delivered,605703.98,USD
+SHP-0035,export,CP-003,Pharmaceutical Intermediates,22.8,CFR,"Nhava Sheva, India",Martinezbury,2025-11-02,2025-11-16,delayed,503482.94,AED
+SHP-0036,import,CP-012,Refined Copper Cathodes,450.0,CIF,West Andrewside,"Nhava Sheva, India",2026-09-22,2026-10-04,booked,586115.35,EUR
+SHP-0037,import,CP-014,Basmati Rice,463.3,CIF,New Jeffrey,"Nhava Sheva, India",2026-03-06,2026-04-20,delayed,737622.73,EUR
+SHP-0038,import,CP-012,Textile Machinery Parts,402.1,CIF,Lake Crystalbury,"Nhava Sheva, India",2025-12-05,2026-01-10,delivered,241448.74,AED
+SHP-0039,import,CP-011,Auto Components,409.2,EXW,North Micheleland,"Nhava Sheva, India",2025-10-31,2025-12-04,delayed,310216.49,EUR
+SHP-0040,import,CP-013,Organic Chemicals,142.9,FOB,West Elizabeth,"Nhava Sheva, India",2025-12-31,2026-01-24,delivered,822517.96,USD
+SHP-0041,import,CP-014,Organic Chemicals,469.9,FOB,New David,"Nhava Sheva, India",2026-11-10,2026-12-15,booked,747941.88,AED
+SHP-0042,import,CP-010,Electronic Components,220.1,CFR,Sanchezfort,"Nhava Sheva, India",2026-11-19,2026-12-15,booked,382206.92,USD
+SHP-0043,import,CP-012,Refined Copper Cathodes,355.8,FOB,Leeville,"Nhava Sheva, India",2025-11-04,2025-12-08,delayed,451533.89,USD
+SHP-0044,import,CP-013,Cotton Yarn,474.7,CFR,Gomezchester,"Nhava Sheva, India",2026-08-23,2026-09-14,in_transit,537218.99,EUR
+SHP-0045,import,CP-013,Organic Chemicals,204.2,CFR,Shieldston,"Nhava Sheva, India",2025-11-08,2025-12-07,delivered,480162.36,AED
+SHP-0046,import,CP-014,Industrial Bearings,206.0,FOB,North Richardmouth,"Nhava Sheva, India",2026-10-24,2026-11-14,booked,272216.21,AED
+SHP-0047,import,CP-013,Steel Coils,339.4,DAP,East Jamesside,"Nhava Sheva, India",2026-11-19,2026-12-19,booked,412744.53,EUR
+SHP-0048,import,CP-015,Electronic Components,170.9,CIF,Taylorburgh,"Nhava Sheva, India",2025-12-01,2025-12-16,delivered,578420.41,AED
+SHP-0049,import,CP-010,Auto Components,492.0,DAP,Stevenland,"Nhava Sheva, India",2026-10-01,2026-10-20,booked,725282.29,USD
+SHP-0050,import,CP-015,Textile Machinery Parts,249.7,CIF,Mortonside,"Nhava Sheva, India",2026-10-29,2026-11-20,booked,142484.22,AED
+SHP-0051,import,CP-014,Steel Coils,29.9,CIF,North Deniseside,"Nhava Sheva, India",2025-10-30,2025-12-06,delivered,781500.11,AED
+SHP-0052,import,CP-014,Pharmaceutical Intermediates,299.7,EXW,North Sarabury,"Nhava Sheva, India",2026-09-23,2026-11-01,booked,528501.43,AED
+SHP-0053,import,CP-013,Basmati Rice,373.1,EXW,South Todd,"Nhava Sheva, India",2026-05-22,2026-06-28,delivered,393557.9,AED
+SHP-0054,import,CP-013,Auto Components,140.9,FOB,Port Richard,"Nhava Sheva, India",2026-07-29,2026-08-25,delivered,612242.24,AED
+SHP-0055,import,CP-010,Basmati Rice,79.7,EXW,East Nicholasfurt,"Nhava Sheva, India",2026-10-18,2026-11-17,booked,595978.34,AED
+SHP-0056,import,CP-013,Textile Machinery Parts,35.8,EXW,Saramouth,"Nhava Sheva, India",2025-10-08,2025-11-13,delivered,343265.75,AED
+SHP-0057,import,CP-013,Steel Coils,7.9,CFR,Rodneyside,"Nhava Sheva, India",2026-08-28,2026-09-08,in_transit,267848.5,AED
+SHP-0058,import,CP-014,Auto Components,246.7,CFR,Mooreport,"Nhava Sheva, India",2026-04-08,2026-05-22,delivered,381743.86,AED
+SHP-0059,import,CP-011,Steel Coils,460.2,DAP,North Beth,"Nhava Sheva, India",2026-10-19,2026-11-23,booked,463322.61,AED
+SHP-0060,import,CP-011,Steel Coils,95.0,CFR,Lake Leeton,"Nhava Sheva, India",2026-07-06,2026-07-17,delivered,334656.21,EUR

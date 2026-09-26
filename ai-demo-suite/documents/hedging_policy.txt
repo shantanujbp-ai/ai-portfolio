@@ -1,0 +1,46 @@
+CORPORATE TREASURY HEDGING POLICY GUIDELINES
+
+APPROVED HEDGING INSTRUMENTS
+1. FX Forward Contracts — for known future exposures up to 12 months
+2. FX Options (vanilla) — when client requires upside participation
+3. Currency Swaps — for exposures beyond 12 months
+4. Collar Strategies — zero cost hedging within defined range
+5. Non-Deliverable Forwards (NDF) — for restricted currencies
+6. Participatory Forwards — partial upside with full downside protection
+
+HEDGE RATIO GUIDELINES
+Minimum hedge ratio: 50% of confirmed exposure
+Maximum hedge ratio: 100% of confirmed exposure
+Speculative positions: strictly prohibited for corporate clients
+Documentation required: ISDA Master Agreement must be in place before any derivative transaction
+
+APPROVAL LIMITS
+Up to USD 5 million: Relationship Manager approval
+USD 5 million to USD 25 million: Treasury Sales Head approval
+Above USD 25 million: Head of Treasury approval
+All structured products: Risk Committee approval regardless of size
+
+ELIGIBLE COUNTERPARTIES
+Only approved financial institutions permitted
+Counterparty credit limit must be confirmed before execution
+All counterparties must have signed ISDA Master Agreement
+Annual counterparty review required
+
+RISK MANAGEMENT REQUIREMENTS
+Mark-to-market reporting: daily for all open positions
+Breach reporting: immediate notification to Treasury Risk if limit exceeded
+Hedge effectiveness testing: quarterly for all designated hedges
+Rollover policy: forward contracts may be rolled with approval, maximum 3 times
+
+DOCUMENTATION REQUIREMENTS
+Trade confirmation: within 24 hours of execution
+ISDA documentation: must be fully executed before first trade
+Board reporting: quarterly summary of hedging activity
+Audit trail: all hedge decisions must be documented with business rationale
+
+AI AND TECHNOLOGY GOVERNANCE FOR TREASURY
+GenAI systems used for treasury advisory must be grounded in approved product documentation.
+AI-generated hedging recommendations require human review before client communication.
+All AI model outputs must be traceable to source documents via retrieval-augmented generation.
+Hallucination risk must be mitigated through mandatory grounding checks on all AI outputs.
+AI systems must not autonomously execute transactions without explicit human approval.

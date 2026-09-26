@@ -1,0 +1,45 @@
+FX TREASURY PRODUCTS GUIDE
+
+FORWARD CONTRACTS
+A forward contract locks in an exchange rate for a future date.
+Used when a corporate client has known future FX exposure.
+Suitable for: importers, exporters, companies with foreign currency receivables or payables.
+Tenor: typically 1 week to 12 months.
+No upfront premium required.
+Risk: client loses benefit if market moves favourably.
+
+FX OPTIONS
+An option gives the right but not the obligation to buy or sell currency at a specified rate.
+Call option: right to buy foreign currency.
+Put option: right to sell foreign currency.
+Premium paid upfront by buyer.
+Used when client wants downside protection while retaining upside.
+
+CURRENCY SWAPS
+Exchange of principal and interest in different currencies.
+Used for longer-term hedging needs typically beyond 1 year.
+Common in cross-border financing and liability management.
+
+NON-DELIVERABLE FORWARDS (NDF)
+Cash-settled forward for restricted currencies.
+Settled in USD based on difference between agreed NDF rate and fixing rate.
+Used for currencies with capital controls such as INR in offshore markets.
+
+COLLAR STRATEGY
+Combination of buying a put option and selling a call option.
+Creates a range within which the exchange rate is protected.
+Can be structured at zero net premium.
+Limits both downside risk and upside participation.
+
+PARTICIPATORY FORWARD
+Client benefits partially if market moves favourably while retaining full downside protection.
+Higher upfront premium than vanilla option.
+Used when client wants protection plus some upside participation.
+
+HEDGING POLICY GUIDELINES
+Hedge ratio: typically 50-100% of known exposure.
+Tenor match: hedge tenor should match underlying exposure.
+Documentation: ISDA Master Agreement required for all derivative transactions.
+Reporting: all hedges must be reported to treasury risk management.
+Approval: large hedges require senior treasury approval.
+Counterparty: only approved bank counterparties permitted.
