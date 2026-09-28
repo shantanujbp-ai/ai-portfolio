@@ -414,13 +414,13 @@
         <button class="tab-btn" data-tab="vendors" id="vendorsTabBtn">Vendor Stack</button>
         <button class="tab-btn" data-tab="flashcards">Flashcards</button>
         <button class="tab-btn" data-tab="quiz">Scenario Quiz</button>
-
+        <button class="tab-btn" data-tab="ask">Ask Claude</button>
       </div>
       <div class="tab-body" id="tabBody"></div>
     </section>
   </div>
 
-  <footer class="note">Content compiled from public vendor documentation and independent analysis as of September 2026 for personal study &mdash; verify against primary vendor docs before quoting externally. Progress is stored only in this browser.</footer>
+  <footer class="note">Content compiled from public vendor documentation and independent analysis as of September 2026 &mdash; verify against primary vendor sources before quoting in formal contexts. Progress is stored only in your browser.</footer>
 </div>
 
 <script>
@@ -459,7 +459,7 @@ var LAYERS = [
     ["Krutrim (Ola)","Ola's sovereign AI arm trains its own Indian LLMs (up to a 700-billion-parameter model built with Lenovo) aimed at Indic languages, positioning itself as Sarvam's chief rival for the &ldquo;India needs its own foundation model&rdquo; argument."],
     ["GreyLabs AI","Doesn't train a general-purpose foundation model &mdash; its investment is in deep customization of speech and reasoning components specifically for BFSI call workflows, verticalized rather than general-purpose by design."],
     ["CoRover.ai (BharatGPT)","Trains and fine-tunes its own BharatGPT models for Indian languages, positioned as a full-stack sovereign alternative built for conversational and agentic use cases rather than general-purpose benchmarks."],
-    ["Fractal.ai","Builds specialized models rather than one general-purpose one &mdash; Vaidya (healthcare multimodal), Ramanujan (reasoning/AGI research) and Pioneer (agentic coding) are each purpose-trained for a narrow domain instead of competing as a single frontier lab."]
+    ["Fractal.ai","Builds specialized models rather than one general-purpose one &mdash; Vaidya (healthcare multimodal), Fathom / Fathom DeepResearch (reasoning, selected for IndiaAI Mission) and PiEvolve (agentic coding, top performer on MLE-Bench) are each purpose-trained for a narrow domain instead of competing as a single frontier lab."]
   ],
   flashcards:[
     ["Constitutional AI","Anthropic's training method: the model critiques and revises its own outputs against a written set of principles, rather than relying solely on human-labeled RLHF."],
@@ -534,7 +534,7 @@ var LAYERS = [
     ["Krutrim (Ola)","Serves its models through its own &ldquo;AI-first&rdquo; sovereign cloud built on Indian infrastructure, positioning compute residency as inseparable from the serving layer itself."],
     ["GreyLabs AI","Serving is built around live BFSI call center workloads specifically, deeply integrated with a bank's existing telephony rather than offered as a general-purpose API."],
     ["CoRover.ai (BharatGPT)","Notably ships an offline &ldquo;BharatGPT DeskAI Appliance&rdquo; (built on NVIDIA hardware) for air-gapped, no-internet serving alongside standard cloud API access &mdash; a serving option none of the other vendors here offer."],
-    ["Fractal.ai","Serving is delivered per-product rather than through one general platform &mdash; Vaidya, Pioneer and Ramanujan are each their own hosted service tailored to their specific domain."]
+    ["Fractal.ai","Serving is delivered per-product rather than through one general platform &mdash; Vaidya, PiEvolve and Fathom are each their own hosted service tailored to their specific domain."]
   ],
   flashcards:[
     ["Responses API","OpenAI's core primitive for agentic apps, supporting inline tool calls during reasoning and a background mode for long-running tasks."],
@@ -675,7 +675,7 @@ var LAYERS = [
     ["Krutrim (Ola)","Orchestration is not yet a distinct product line &mdash; Krutrim's public roadmap centers on the model and sovereign-cloud layers first, with agent tooling still maturing."],
     ["GreyLabs AI","Orchestration is the live voice conversation itself &mdash; routing a call through the right verticalized workflow for a specific BFSI process (collections, servicing) rather than a general-purpose multi-agent framework."],
     ["CoRover.ai (BharatGPT)","Markets itself as a &ldquo;full-stack conversational agentic AI&rdquo; platform, bundling model, orchestration and deployment (including the offline DeskAI appliance) into one packaged offering rather than separable layers."],
-    ["Fractal.ai","Project Pioneer is Fractal's agent platform, handling tasks from code-writing through testing and deployment and ranking among top performers on OpenAI's MLE-Bench &mdash; closer to an autonomous engineering agent than a general business-workflow orchestrator."]
+    ["Fractal.ai","PiEvolve is Fractal's agentic coding engine, handling tasks from code-writing through testing and deployment and ranking among top performers on OpenAI's MLE-Bench &mdash; closer to an autonomous engineering agent than a general business-workflow orchestrator."]
   ],
   flashcards:[
     ["Claude Agent SDK","Anthropic's code-first framework for building autonomous agents, underlying Claude Code's filesystem/git access and Computer Use's GUI-level actions."],
@@ -687,7 +687,7 @@ var LAYERS = [
     ["Vibe","Mistral's agentic platform (announced May 2026) consolidating research, drafting, coding and calendar/inbox handling into long-running multi-step tasks."],
     ["LangGraph","LangChain's library for building stateful, cyclical multi-agent workflows as an explicit graph, rather than a single fixed chain."],
     ["AI Agent Fabric","ServiceNow's coordination layer speaking both MCP and Google's A2A protocol, replacing point-to-point agent integrations with one shared fabric."],
-    ["Project Pioneer","Fractal's autonomous coding agent, handling tasks from writing through testing and deployment, ranking among top performers on OpenAI's MLE-Bench."]
+    ["PiEvolve","Fractal's agentic coding engine, handling tasks from writing through testing and deployment, ranking among top performers on OpenAI's MLE-Bench."]
   ],
   scenarios:[
     {q:"A platform offers three distinct agent categories in one orchestration layer &mdash; pre-built, custom, and third-party-model &mdash; plus async multi-step “Flows” run on its own compute runners. Which platform?",
@@ -735,7 +735,7 @@ var LAYERS = [
     ["Meta &middot; Llama","Safety is largely left to the deployer &mdash; Llama ships under an open community license with Meta-published usage guidelines, but enforcement (content filtering, guardrails) is whatever the self-hosting team builds or bolts on."],
     ["Hugging Face","Model and dataset cards function as a transparency-based guardrail &mdash; documenting training provenance, intended use and licensing so an enterprise can audit a model before deployment, rather than a runtime content filter."],
     ["NVIDIA","NeMo Guardrails is a dedicated safety component applying content moderation and compliance rules during the &ldquo;deploy&rdquo; phase, plus a separate vulnerability-detection step in NeMo's build phase &mdash; safety treated as its own pipeline stage, not an add-on."],
-    ["DeepSeek","Independent testing has reported concerning results (a 94% hallucination rate on one benchmark) alongside undisclosed training costs and image-only benchmark disclosures &mdash; worth flagging as the vendor here with the least third-party-verifiable safety posture."],
+    ["DeepSeek","Safety posture is the least third-party-verifiable of any vendor here &mdash; training costs remain undisclosed, benchmark disclosures have been image-only, and independent safety evaluations are limited compared to frontier Western labs. Worth flagging as the highest-uncertainty vendor on governance."],
     ["xAI &middot; Grok","Publicly documented safety philosophy is thinner than most peers here &mdash; xAI has emphasized speed and real-time relevance over the kind of published safety framework Anthropic or OpenAI maintain."],
     ["Perplexity","Citation-as-guardrail: every claim is attributed to a live source, so the main defense against fabrication is verifiability rather than a content filter."],
     ["Databricks","Unity Catalog is effectively the guardrail &mdash; entitlement-aware access control means an agent's guardrail failure mode is &ldquo;can't see the data&rdquo; rather than &ldquo;said something wrong,&rdquo; since it can never retrieve what it isn't authorized to see."],
@@ -748,7 +748,7 @@ var LAYERS = [
     ["Krutrim (Ola)","Guardrails are framed around data sovereignty rather than model behavior &mdash; the safety pitch is &ldquo;your data stays on Indian infrastructure,&rdquo; not a published content-moderation framework."],
     ["GreyLabs AI","Being BFSI-specific, guardrails are built around regulated call-handling requirements (compliance scripting, escalation rules) rather than general-purpose content moderation."],
     ["CoRover.ai (BharatGPT)","The offline DeskAI appliance is itself a guardrail of sorts &mdash; for use cases where data literally cannot reach the internet, air-gapping removes an entire category of data-leakage risk rather than filtering it after the fact."],
-    ["Fractal.ai","Guardrails are domain-specific &mdash; Vaidya's healthcare guardrails (accuracy on medical benchmarks) are a different problem from Pioneer's code-agent guardrails (safe autonomous code execution), reflecting the products' separate architectures."]
+    ["Fractal.ai","Guardrails are domain-specific &mdash; Vaidya's healthcare guardrails (accuracy on medical benchmarks) are a different problem from PiEvolve's code-agent guardrails (safe autonomous code execution), reflecting the products' separate architectures."]
   ],
   flashcards:[
     ["Responsible Scaling Policy","Anthropic's public commitment to pause or limit deployment of its own models once they cross defined capability thresholds."],
@@ -779,7 +779,7 @@ var LAYERS = [
     {q:"Which vendor gives IT a single console showing every autonomous agent running across the organization for fleet-wide audit and compliance, tied into the same admin console used for the rest of its enterprise suite?",
      opts:["Microsoft Azure AI","GitLab Duo","AWS Bedrock","Sarvam AI"], a:0,
      ex:"Agent 365 in Microsoft Admin Center is built specifically for fleet-wide agent governance."},
-    {q:"Which vendor's safety posture has drawn specific scrutiny from independent testers, including a reported 94% hallucination rate on one benchmark alongside undisclosed training costs?",
+    {q:"Which vendor's safety posture is the least third-party-verifiable, with undisclosed training costs, image-only benchmark disclosures, and limited independent safety evaluations compared to frontier Western labs?",
      opts:["DeepSeek","xAI &middot; Grok","Meta &middot; Llama","Mistral AI"], a:0,
      ex:"DeepSeek is worth flagging as the vendor here with the least third-party-verifiable safety posture, despite its compute-efficiency story."},
     {q:"A vendor bundles guardrails against off-topic conversations, zero data retention, toxicity detection and dynamic grounding into a single named layer sitting in front of every agent it runs. Which vendor?",
@@ -942,7 +942,7 @@ var LAYERS = [
     ["krutrim","Krutrim (Ola)","minusOrch","Owns model and sovereign-cloud deployment; orchestration is explicitly &ldquo;not yet a distinct product line&rdquo; &mdash; the same missing band as Sarvam, but because it hasn't been built yet rather than by design."],
     ["greylabs-ai","GreyLabs AI","fsv","Same shape as Gnani.ai: all four bands, all scoped to BFSI call-center voice workflows."],
     ["corover-ai","CoRover.ai (BharatGPT)","fsv","Markets itself as bundling model, orchestration and deployment (including an offline appliance) into one packaged offering &mdash; full-stack, scoped to Indic conversational AI."],
-    ["fractal-ai","Fractal.ai","fsv","Not one stack but a portfolio of narrow ones &mdash; Vaidya, Pioneer and Ramanujan each has its own model, orchestration and safety story for its own domain, rather than one shared architecture."]
+    ["fractal-ai","Fractal.ai","fsv","Not one stack but a portfolio of narrow ones &mdash; Vaidya, PiEvolve and Fathom each has its own model, orchestration and safety story for its own domain, rather than one shared architecture."]
   ],
   explainer:"Every vendor in this comparison assembles some version of the same four architectural bands, whether or not their marketing says so explicitly: Agent &amp; Application (where a request originates and tools get called), Foundation Model (the reasoning engine), Alignment &amp; Safety (what shapes and checks its behavior), and Deployment &amp; Governance (where it actually runs, and who's accountable for that). Pick any vendor from the dropdown below to see which bands it actually owns, which it leaves to whoever deploys it, and where its real product decisions concentrate.</p><div class='archpicker'><label for='archVendorSelect'>Vendor</label><select id='archVendorSelect'></select></div><div id='archDiagramSlot'></div><p>Two things are worth noticing once you can see a stack laid out this way, whichever vendor you picked. First, &ldquo;safety&rdquo; is rarely one filter bolted on after the model responds &mdash; where a vendor has it at all, part of it is usually baked into training itself, and only part is a runtime check. Second, the bottom band is where most of an enterprise's actual procurement conversation happens: which deployment route is available sets your data-residency posture, your audit trail and your contractual guarantees, largely independent of which model tier you're calling.</p><p>Seven shapes cover all 27 vendors here: full-stack general (Anthropic, OpenAI, Gemini, AWS Bedrock, Microsoft Azure/Foundry, Mistral AI, Cohere), full-stack vertical (Gnani.ai, GreyLabs AI, CoRover.ai, Fractal.ai), framework-only (LangChain, LlamaIndex), model-only (DeepSeek, Meta Llama, xAI Grok, Perplexity), unified-platform (Databricks, Snowflake, Salesforce Agentforce, ServiceNow, IBM watsonx), hub/infrastructure (Hugging Face, NVIDIA), and full-stack-minus-one-band (Sarvam AI and Krutrim, both missing orchestration; GitLab Duo, missing the model). The useful question for any vendor pitch you haven't placed yet isn't &ldquo;is this an agent&rdquo; &mdash; it's which of these shapes it actually is, and which band its pitch is quietly not talking about.",
   banking:"This is the lens worth applying to every vendor pitch you sit through: ask which band of this stack the pitch is actually about. A vendor selling you a model demo is usually selling band two; a vendor selling you &ldquo;governance&rdquo; is selling band four. Knowing the difference is what stops a governance conversation from being derailed by a capability demo, or vice versa.",
@@ -1148,7 +1148,8 @@ function renderBody(){
     renderFlashcards(body, l);
   } else if(state.tab === 'quiz'){
     renderQuiz(body, l);
-  
+  } else if(state.tab === 'ask'){
+    renderAsk(body);
   }
 }
 
@@ -1397,6 +1398,73 @@ function chatBubble(t){
   return '<div class="chat-msg '+t.role+'"><span class="who">'+(t.role==='user'?'You':'Claude')+'</span><div class="bubble">'+escapeHtml(t.content)+'</div></div>';
 }
 
+function renderAsk(body){
+  if(!sampleNS){
+    body.innerHTML = '<div class="explainer"><p>Ask Claude isn’t available in this view right now — Claude usage may not be enabled for this account, or the page is open outside claude.ai.</p></div>';
+    return;
+  }
+  var log = state.chat.turns.map(chatBubble).join('');
+  if(state.chat.busy){
+    log += chatBubble({role:'assistant', content: state.chat.streamingText || 'Thinking…'});
+  }
+  body.innerHTML =
+    '<div class="chat-wrap">'+
+      '<div class="chat-log" id="chatLog">'+(log || '<p class="chat-hint">Ask anything about these vendors, layers, or the reference build — e.g. “How does AWS Bedrock’s guardrail layer compare to what I built for Neo FX?”</p>')+'</div>'+
+      '<div class="chat-input-row">'+
+        '<textarea id="chatInput" placeholder="Ask about any layer or vendor..." rows="2"'+(state.chat.busy?' disabled':'')+'></textarea>'+
+        '<button class="btn primary" id="chatSend">'+(state.chat.busy?'Stop':'Ask')+'</button>'+
+      '</div>'+
+      (state.chat.error ? '<p class="chat-error">'+escapeHtml(state.chat.error)+'</p>' : '')+
+    '</div>';
+  var logEl = document.getElementById('chatLog');
+  logEl.scrollTop = logEl.scrollHeight;
+  document.getElementById('chatSend').addEventListener('click', function(){
+    if(state.chat.busy){ if(state.chat.controller) state.chat.controller.abort(); return; }
+    sendChat();
+  });
+  var inputEl = document.getElementById('chatInput');
+  inputEl.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendChat(); }
+  });
+  inputEl.focus();
+}
+
+async function sendChat(){
+  var inputEl = document.getElementById('chatInput');
+  var text = (inputEl.value || '').trim();
+  if(!text || state.chat.busy) return;
+  state.chat.turns.push({role:'user', content:text});
+  state.chat.busy = true;
+  state.chat.streamingText = '';
+  state.chat.error = null;
+  renderBody();
+
+  var ctl = new AbortController();
+  state.chat.controller = ctl;
+  var leading = {role:'user', content: CHAT_RULES + '\n\n--- REFERENCE CONTENT ---\n' + buildContext()};
+  var turnsForCall = [leading].concat(state.chat.turns);
+
+  try{
+    var res = await sampleNS(turnsForCall, {
+      modelTier:'default',
+      cache:false,
+      signal: ctl.signal,
+      onText: function(u){ state.chat.streamingText = u.text; renderBody(); }
+    });
+    state.chat.turns.push({role:'assistant', content: res.text});
+  }catch(e){
+    if(e && e.code === 'cancelled'){
+      if(e.text) state.chat.turns.push({role:'assistant', content: e.text});
+    } else {
+      state.chat.error = chatErrorCopy(e && e.code);
+    }
+  }
+  state.chat.busy = false;
+  state.chat.controller = null;
+  state.chat.streamingText = '';
+  renderBody();
+}
+
 function shuffle(arr){
   for(var i=arr.length-1;i>0;i--){
     var j = Math.floor(Math.random()*(i+1));
@@ -1428,8 +1496,8 @@ function start(data){
   initCapabilities();
 }
 
-
-start({});
+window.claude?.hot?.snapshot?.(function(){ return { progress: progress }; });
+if(window.claude?.hot?.ready){ window.claude.hot.ready(start); } else { start(window.claude?.hot?.data ?? {}); }
 
 })();
 </script>
