@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Stack Fluency</title>
+<title>AI Stack Fluency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -392,7 +392,7 @@
   <header class="top">
     <div>
       <p class="eyebrow">Eight layers · 27 vendors · One reference build · One end-to-end view</p>
-      <h1 class="title">Stack Fluency</h1>
+      <h1 class="title">AI Stack Fluency</h1>
       <p class="subtitle">Drill the architecture underneath the frontier labs (Claude, OpenAI, Gemini, Grok, DeepSeek, Llama), the hyperscalers and enterprise platforms (AWS, Azure, Databricks, Snowflake, Salesforce, ServiceNow, IBM), the frameworks (LangChain, LlamaIndex, Hugging Face) and the India-focused vendors (Sarvam, Gnani, Krutrim, GreyLabs, CoRover, Fractal) &mdash; then test the open-source reference pattern for building the whole thing yourself.</p>
     </div>
     <div class="session-stats">
@@ -1043,9 +1043,9 @@ function buildContext(){
   }).join('\n\n');
 }
 
-var CHAT_RULES = "You are the study assistant embedded in \"Stack Fluency\", a personal learning tool comparing AI vendor architecture stacks across six layers (model/training, inference/serving, RAG/retrieval, agent orchestration, safety/guardrails, data residency/governance) plus a generic end-to-end RAG reference-build pattern. Answer the viewer's question using ONLY the reference content below plus sound general reasoning about AI architecture. If the reference content doesn't cover something, say so plainly rather than guessing at vendor specifics. Keep answers concise and precise about which vendor or layer a claim applies to. Do not repeat the whole reference content back.";
+var CHAT_RULES = "You are the study assistant embedded in \"AI Stack Fluency\", a personal learning tool comparing AI vendor architecture stacks across six layers (model/training, inference/serving, RAG/retrieval, agent orchestration, safety/guardrails, data residency/governance) plus a generic end-to-end RAG reference-build pattern. Answer the viewer's question using ONLY the reference content below plus sound general reasoning about AI architecture. If the reference content doesn't cover something, say so plainly rather than guessing at vendor specifics. Keep answers concise and precise about which vendor or layer a claim applies to. Do not repeat the whole reference content back.";
 
-var ADAPTIVE_RULES = "You are an adaptive AI-architecture tutor inside \"Stack Fluency\". You will be given the viewer's per-layer quiz performance so far and the full reference content for all layers. Pick whichever layer looks weakest or least tested (ties broken by picking one at random) and write ONE new multiple-choice scenario question testing a real nuance from that layer's reference content — do not copy a question verbatim, write an original one grounded strictly in the facts given.";
+var ADAPTIVE_RULES = "You are an adaptive AI-architecture tutor inside \"AI Stack Fluency\". You will be given the viewer's per-layer quiz performance so far and the full reference content for all layers. Pick whichever layer looks weakest or least tested (ties broken by picking one at random) and write ONE new multiple-choice scenario question testing a real nuance from that layer's reference content — do not copy a question verbatim, write an original one grounded strictly in the facts given.";
 
 function chatErrorCopy(code){
   switch(code){
