@@ -414,7 +414,7 @@
         <button class="tab-btn" data-tab="vendors" id="vendorsTabBtn">Vendor Stack</button>
         <button class="tab-btn" data-tab="flashcards">Flashcards</button>
         <button class="tab-btn" data-tab="quiz">Scenario Quiz</button>
-        <button class="tab-btn" data-tab="ask">Ask Claude</button>
+        
       </div>
       <div class="tab-body" id="tabBody"></div>
     </section>
@@ -1148,8 +1148,7 @@ function renderBody(){
     renderFlashcards(body, l);
   } else if(state.tab === 'quiz'){
     renderQuiz(body, l);
-  } else if(state.tab === 'ask'){
-    renderAsk(body);
+  
   }
 }
 
@@ -1496,8 +1495,8 @@ function start(data){
   initCapabilities();
 }
 
-window.claude?.hot?.snapshot?.(function(){ return { progress: progress }; });
-if(window.claude?.hot?.ready){ window.claude.hot.ready(start); } else { start(window.claude?.hot?.data ?? {}); }
+
+start({});
 
 })();
 </script>
