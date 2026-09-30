@@ -431,7 +431,7 @@ var LAYERS = [
   id:'model', n:'01', name:'Model &amp; Training',
   tagline:'How the underlying model is built and taught to reason.',
   explainer:"This is the foundation layer: what the model actually is, how it was trained, and what kind of reasoning it was built to do. Some vendors train frontier general-purpose models; others deliberately narrow the target &mdash; a language, a modality, a call center &mdash; and train against that instead. The training method itself (self-critique, reinforcement on reasoning, compute-efficient fine-tuning) shapes everything built on top.",
-  banking:"For a treasury or FX platform, this layer decides whether you're renting general reasoning capacity or a model actually tuned for your language mix and domain vocabulary.",
+  banking:"This layer decides whether you're renting general reasoning capacity or a model tuned for your specific domain vocabulary and regulatory context.",
   vendors:[
     ["Anthropic &middot; Claude","Trains via Constitutional AI &mdash; a supervised phase where the model critiques and revises its own drafts against a written constitution, then an RLAIF phase where an AI evaluator scores outputs against those principles to train a reward model. Ships as a tiered lineup (Haiku 4.5, Sonnet 5, Opus 5) with adaptive thinking (an effort parameter: low/medium/high) rather than a single fixed extended-thinking mode."],
     ["OpenAI","GPT line plus the o-series reasoning models (o1, o3, o3-mini, o4-mini), trained specifically to produce long chain-of-thought and call tools mid-reasoning without losing the reasoning trace."],
@@ -865,7 +865,7 @@ var LAYERS = [
   tagline:'The generic pattern for assembling a production RAG/agentic system yourself, independent of any single vendor’s managed stack.',
   vendorColLabel:'Component', vendorColDesc:'What it does and why it matters',
   explainer:"Everything in layers 01&ndash;06 is what a vendor's managed platform hands you pre-built. You can also assemble every one of those layers yourself from open components &mdash; and this is the reference pattern most self-built production GenAI systems converge on: a tiered data lake feeding a chunking-and-embedding pipeline, hybrid retrieval, an agent that routes queries dynamically, guardrails wrapped around every step, and a chat interface that shows its own working. Knowing this pattern is what lets you evaluate any vendor's managed offering &mdash; you're comparing it against the reference build, not taking the marketing at face value.",
-  banking:"This is the pattern behind a self-built treasury or FX co-pilot: a bank rarely needs to buy a whole platform when the six components below can be assembled from open-source and cloud-native parts already sitting in most enterprise environments.",
+  banking:"Organisations rarely need to buy a whole platform when the components below can be assembled from open-source and cloud-native parts already present in most enterprise environments.",
   vendors:[
     ["Bronze / Silver / Gold Data Lake","A three-tier medallion structure. Bronze is the raw landing zone where data arrives exactly as received, untouched. Silver is cleaned and prepared: text extracted, structured types corrected, noise removed. Gold is consumption-ready, shaped specifically for how it will actually be queried. Keeping raw data intact in Bronze makes debugging possible and ensures every downstream layer works from clean, reliable inputs rather than raw chaos."],
     ["Chunking &amp; Embedding","Documents are broken into meaningful fragments and converted into vector representations. This is what makes semantic search possible &mdash; finding content by meaning rather than requiring an exact keyword match."],
@@ -1408,7 +1408,7 @@ function renderAsk(body){
   }
   body.innerHTML =
     '<div class="chat-wrap">'+
-      '<div class="chat-log" id="chatLog">'+(log || '<p class="chat-hint">Ask anything about these vendors, layers, or the reference build — e.g. “How does AWS Bedrock’s guardrail layer compare to what I built for Neo FX?”</p>')+'</div>'+
+      '<div class="chat-log" id="chatLog">'+(log || '<p class="chat-hint">Ask anything about these vendors, layers, or the reference build architecture.</p>')+'</div>'+
       '<div class="chat-input-row">'+
         '<textarea id="chatInput" placeholder="Ask about any layer or vendor..." rows="2"'+(state.chat.busy?' disabled':'')+'></textarea>'+
         '<button class="btn primary" id="chatSend">'+(state.chat.busy?'Stop':'Ask')+'</button>'+
