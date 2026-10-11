@@ -394,6 +394,7 @@
       <p class="eyebrow">Eight layers · 27 vendors · One reference build · One end-to-end view</p>
       <h1 class="title">AI Stack Fluency</h1>
       <p class="subtitle">Drill the architecture underneath the frontier labs (Claude, OpenAI, Gemini, Grok, DeepSeek, Llama), the hyperscalers and enterprise platforms (AWS, Azure, Databricks, Snowflake, Salesforce, ServiceNow, IBM), the frameworks (LangChain, LlamaIndex, Hugging Face) and the India-focused vendors (Sarvam, Gnani, Krutrim, GreyLabs, CoRover, Fractal) &mdash; then test the open-source reference pattern for building the whole thing yourself.</p>
+      <p class="subtitle" style="margin-top:8px;font-style:italic;font-size:13.5px;">Goal: by the end, you can map any enterprise AI vendor pitch to the architectural layer it addresses, identify what it leaves unresolved, and assess whether the deployment model fits your regulatory context.</p>
     </div>
     <div class="session-stats">
       <div class="stat"><span class="num" id="statCards">0</span><span class="lbl">Cards reviewed</span></div>
@@ -414,6 +415,7 @@
         <button class="tab-btn" data-tab="vendors" id="vendorsTabBtn">Vendor Stack</button>
         <button class="tab-btn" data-tab="flashcards">Flashcards</button>
         <button class="tab-btn" data-tab="quiz">Scenario Quiz</button>
+        <button class="tab-btn" data-tab="deepscenario">Deep Scenarios</button>
         
       </div>
       <div class="tab-body" id="tabBody"></div>
@@ -1047,6 +1049,227 @@ var CHAT_RULES = "You are the study assistant embedded in \"AI Stack Fluency\", 
 
 var ADAPTIVE_RULES = "You are an adaptive AI-architecture tutor inside \"AI Stack Fluency\". You will be given the viewer's per-layer quiz performance so far and the full reference content for all layers. Pick whichever layer looks weakest or least tested (ties broken by picking one at random) and write ONE new multiple-choice scenario question testing a real nuance from that layer's reference content — do not copy a question verbatim, write an original one grounded strictly in the facts given.";
 
+// ── DEEP SCENARIOS ─────────────────────────────────────────────────────────
+var DEEP_SCENARIOS = [
+  {
+    id: 'ds1',
+    title: 'Indian Regulated Bank — Multilingual RAG',
+    context: 'A mid-size Indian private bank wants to deploy an AI assistant for relationship managers. Requirements: answers must be grounded in internal policy documents, responses in English and Hindi, data cannot leave Indian soil, system must produce an audit trail for every answer given to a client, and the bank has no dedicated ML engineering team.',
+    question: 'Which combination of stack layers and vendors best satisfies all five constraints simultaneously?',
+    opts: [
+      'AWS Bedrock (serving) + Titan Embeddings (RAG) + Claude Sonnet (model) + Bedrock Guardrails (safety)',
+      'Sarvam AI (model, multilingual Indic) + LangChain (orchestration) + Chroma (vector store) + Bedrock Guardrails wrapped around Sarvam API',
+      'Azure AI Foundry (serving, India region) + Azure AI Search (RAG) + GPT-4o (model) + Azure Content Safety',
+      'GreyLabs AI (full-stack vertical) — managed BFSI deployment with on-prem option, built-in audit trail, no ML team required'
+    ],
+    a: 3,
+    ex: 'GreyLabs AI is the strongest answer because it satisfies all five constraints as a managed unit: BFSI-specific deployment, on-prem capability for data residency, built-in regulatory audit trail, and no requirement for an in-house ML team. Sarvam AI (option B) handles multilingual well but leaves the bank to assemble and operate the orchestration, RAG, and safety layers independently — infeasible without an ML team. AWS Bedrock (option A) lacks a strong multilingual Indic model. Azure (option C) has India regions but GPT-4o is not optimised for Hindi and the bank would still need to build the compliance layer. The key insight: when a regulated bank has no ML engineering capacity, a managed vertical provider beats assembling best-of-breed components.',
+    losses: [
+      'Option A loses: Titan Embeddings and Claude have no native Hindi optimisation; audit trail requires custom build.',
+      'Option B loses: multilingual capability is strong but bank must operate orchestration and RAG independently — no ML team makes this infeasible.',
+      'Option C loses: Azure India regions solve residency, but GPT-4o Hindi quality is inconsistent and compliance audit trail still requires custom engineering.'
+    ]
+  },
+  {
+    id: 'ds2',
+    title: 'Global Bank — Agentic FX Advisory with Human-in-the-Loop',
+    context: 'A global bank wants an AI agent that can retrieve live FX product documentation, answer relationship manager queries, and draft hedging recommendations — but all recommendations must be reviewed by a human before reaching the client. The system must cite every source document used. Deployment is on AWS. The bank already uses Salesforce for CRM.',
+    question: 'Which architecture satisfies the grounding, citation, human-in-the-loop, and Salesforce integration requirements?',
+    opts: [
+      'Bedrock Knowledge Bases (RAG + citations) + Bedrock Agents (orchestration with human approval step) + Bedrock Guardrails + Salesforce MCP server for CRM integration',
+      'LangChain (orchestration) + Pinecone (vector store) + Claude API (model) + custom Salesforce connector + custom approval workflow',
+      'Salesforce Agentforce (full-stack, native Salesforce integration) + Einstein Trust Layer (guardrails)',
+      'Azure AI Foundry + Azure AI Search + GPT-4o + Power Automate for human approval loop'
+    ],
+    a: 0,
+    ex: 'Option A is strongest: Bedrock Knowledge Bases handles grounding and automatic source citations natively; Bedrock Agents supports a human-in-the-loop approval node as a first-class feature; Guardrails wraps every response; and Anthropic\'s MCP means a Salesforce MCP server can expose CRM context to the agent without a custom connector. The full stack stays inside AWS, satisfying the deployment constraint. Option B works architecturally but requires significant custom engineering for the approval workflow and Salesforce integration — higher build cost with no compliance advantage. Option C (Agentforce) handles Salesforce natively but its RAG and citation capabilities are weaker than Bedrock Knowledge Bases for document-grounded advisory. Option D introduces Azure in an AWS-constrained deployment.',
+    losses: [
+      'Option B loses: custom approval workflow and Salesforce connector add engineering cost without compliance benefit over managed option A.',
+      'Option C loses: Agentforce excels at Salesforce workflows but its document RAG and source citation capabilities are weaker than Bedrock Knowledge Bases.',
+      'Option D loses: AWS deployment constraint makes Azure introduction architecturally problematic.'
+    ]
+  },
+  {
+    id: 'ds3',
+    title: 'APAC Insurer — Claims Processing with Sovereignty Constraint',
+    context: 'An Australian general insurer wants to automate first-pass claims triage: extract structured data from claim documents (PDFs, images), classify claim type and severity, flag anomalies for fraud review, and route complex claims to human adjusters. Australian customer data cannot be sent to any US-based model API. The team has Python engineers but no ML researchers.',
+    question: 'Which stack satisfies the data sovereignty constraint while handling multimodal document extraction and fraud flagging?',
+    opts: [
+      'AWS Bedrock (Sydney region, ap-southeast-2) with Claude 3.5 Sonnet multimodal — no data leaves Australia; LangChain orchestration; Bedrock Guardrails for anomaly flagging',
+      'Azure AI Foundry (Australia East region) with GPT-4o multimodal + Azure AI Document Intelligence for extraction + Azure Content Safety',
+      'Self-hosted Meta Llama 4 Scout (open-weight, 10M context, multimodal) on Australian cloud infrastructure + custom extraction pipeline',
+      'OpenAI API (US endpoint) + custom data anonymisation layer before sending to API'
+    ],
+    a: 0,
+    ex: 'Option A is strongest: AWS Sydney region (ap-southeast-2) keeps data in Australia; Claude 3.5 Sonnet handles multimodal document extraction natively (PDFs, images); LangChain orchestration is within Python engineer capability; Bedrock Guardrails handles anomaly confidence thresholds. APRA does not prohibit cloud processing but requires data residency — AWS Sydney satisfies this contractually. Option B (Azure Australia East) is a legitimate alternative but GPT-4o multimodal document extraction is less tested for insurance claim formats than Claude. Option C is technically sound but self-hosting Llama requires ML infrastructure expertise the team lacks. Option D fails immediately — sending Australian customer data to a US endpoint violates the stated constraint regardless of anonymisation.',
+    losses: [
+      'Option B loses: Azure Australia East is valid for residency but GPT-4o document extraction is less established for insurance claim formats than Claude 3.5 Sonnet.',
+      'Option C loses: self-hosting Llama requires ML infrastructure capability the team does not have.',
+      'Option D fails immediately: sending Australian customer data to a US API endpoint violates the sovereignty constraint regardless of anonymisation.'
+    ]
+  },
+  {
+    id: 'ds4',
+    title: 'Consulting Firm — Multi-Client AI Platform with Isolation',
+    context: 'A mid-size consulting firm wants to build an internal AI platform serving ten client engagements simultaneously. Each client\'s data must be completely isolated — no risk of cross-contamination. Consultants need to query client-specific document repositories, and the platform must log every query for billing and compliance. Budget is constrained: the firm cannot afford separate infrastructure per client.',
+    question: 'Which architecture provides per-client data isolation without the cost of ten separate deployments?',
+    opts: [
+      'One Databricks workspace with Unity Catalog — per-client data isolation enforced at the entitlement layer; Mosaic AI Vector Search with access-control-aware retrieval; one Bedrock API key shared across the platform',
+      'Ten separate Pinecone namespaces + one LangChain orchestrator + one Claude API key — namespace isolation per client in the vector store',
+      'Snowflake Cortex — per-database isolation for each client; Cortex Search for RAG; all queries logged in Snowflake audit trail natively',
+      'Azure AI Foundry with one deployment per client model — strongest isolation but highest cost'
+    ],
+    a: 0,
+    ex: 'Option A is strongest for this constraint set: Unity Catalog enforces data isolation at the access-control layer — a query from a consultant on Client A literally cannot return chunks from Client B\'s namespace, because entitlements are checked at the vector-search step itself. This is the only option where isolation is enforced by the data platform rather than application-level logic. Mosaic AI Vector Search is access-control-aware by design. One Bedrock API key serves all clients with logging at the platform level. Option B (Pinecone namespaces) provides logical separation but namespace isolation is enforced by application logic — a misconfigured query could cross namespace boundaries. Option C (Snowflake Cortex) is a strong alternative with native audit logging, but Cortex\'s RAG capabilities are less mature than Databricks for complex document retrieval. Option D solves isolation but violates the budget constraint.',
+    losses: [
+      'Option B loses: Pinecone namespace isolation is application-enforced, not platform-enforced — a misconfigured query can cross client boundaries.',
+      'Option C loses: Snowflake Cortex audit logging is excellent but its RAG maturity is lower than Databricks for complex multi-document retrieval.',
+      'Option D loses: one deployment per client violates the budget constraint explicitly stated in the scenario.'
+    ]
+  },
+  {
+    id: 'ds5',
+    title: 'UAE Bank — Arabic Voice Collections Workflow',
+    context: 'A UAE retail bank wants to automate outbound collections calls in Arabic, Gulf dialect. The system must handle live voice conversations, check account status in the core banking system mid-call, offer structured payment plans, record call outcomes, and comply with UAE Central Bank consumer protection guidelines. The bank has no AI engineering team and wants a managed service.',
+    question: 'Which vendor is specifically built for this exact combination of requirements?',
+    opts: [
+      'OpenAI Realtime API (voice) + custom Arabic prompt engineering + Salesforce integration via MCP + human review for compliance',
+      'Gnani.ai — purpose-built low-latency voice AI for call centre operations, Indic and Gulf Arabic dialect support, BFSI-specific workflow integration, managed deployment',
+      'Azure AI Speech (Arabic ASR/TTS) + Azure AI Foundry (orchestration) + GPT-4o Arabic + custom collections workflow',
+      'Google Cloud Chirp (multilingual ASR) + Vertex AI (orchestration) + Gemini (model) + custom Arabic collections workflow'
+    ],
+    a: 1,
+    ex: 'Gnani.ai is the only vendor in the stack purpose-built for exactly this profile: low-latency streaming voice bots, Gulf Arabic dialect support, BFSI call centre workflow integration, and managed deployment requiring no AI engineering team. The key differentiators are: (1) voice latency — Gnani.ai\'s streaming architecture is optimised for sub-second voice response in live calls, which assembled stacks struggle to match; (2) dialect — Gulf Arabic is distinct from Modern Standard Arabic and requires domain-specific voice training that generic ASR/TTS services (Azure Speech, Google Chirp) handle inconsistently; (3) BFSI workflow — collections-specific logic (account lookup, payment plan offer, outcome recording) is pre-built rather than custom-developed. Options A, C, and D all require significant custom engineering for the Arabic dialect, BFSI workflow, and real-time voice integration — infeasible without an AI engineering team.',
+    losses: [
+      'Option A loses: OpenAI Realtime API Arabic dialect quality for Gulf variants is inconsistent; custom BFSI workflow requires engineering team the bank lacks.',
+      'Option C loses: Azure Speech handles Arabic but Gulf dialect accuracy is lower than Gnani.ai\'s purpose-trained models; custom collections workflow requires engineering.',
+      'Option D loses: Google Chirp Arabic quality is improving but Gulf dialect support and BFSI collections workflow still require custom engineering.'
+    ]
+  },
+  {
+    id: 'ds6',
+    title: 'DevSecOps Team — AI-Assisted Code Review with IP Protection',
+    context: 'A financial services software team wants AI-assisted code review integrated into their GitLab CI/CD pipeline. Requirements: the model must see the full codebase context (issues, merge requests, pipeline status), code must never leave the firm\'s own GitLab instance, suggestions must be explainable with references to specific files and lines, and the team wants to avoid paying per-token API costs for high-volume reviews.',
+    question: 'Which vendor satisfies all four constraints: full SDLC context, on-instance data residency, source-referenced explanations, and no per-token costs at scale?',
+    opts: [
+      'GitHub Copilot Enterprise — deep code context, strong suggestions, per-seat pricing not per-token',
+      'GitLab Duo with self-managed GitLab — runs inside the firm\'s own instance, full SDLC context natively (code, issues, MRs, pipelines), source-referenced suggestions, seat-based pricing',
+      'Claude API + custom GitLab webhook + LangChain retrieval over local git repository',
+      'AWS CodeWhisperer (Amazon Q Developer) + CodeGuru for code review + S3 for codebase storage'
+    ],
+    a: 1,
+    ex: 'GitLab Duo on self-managed GitLab is the only option satisfying all four constraints simultaneously. (1) Full SDLC context: GitLab Duo\'s retrieval corpus is the firm\'s own live GitLab instance — code, issues, merge requests, CI/CD pipelines and wikis, accessed in real-time rather than via a separate vector index. (2) Data residency: self-managed GitLab means nothing leaves the firm\'s infrastructure by design. (3) Source-referenced explanations: Duo cites specific files, line numbers and MR context in its suggestions. (4) Seat-based pricing: GitLab Duo is licensed per seat, not per token — predictable cost at high review volume. Option A (GitHub Copilot) fails the data residency requirement — code is processed by GitHub\'s infrastructure, not the firm\'s GitLab instance. Option C works architecturally but requires engineering effort to build the retrieval layer and loses the native SDLC context GitLab Duo provides. Option D has no native GitLab integration and would require a migration away from GitLab.',
+    losses: [
+      'Option A loses: GitHub Copilot Enterprise processes code on GitHub infrastructure, violating the on-instance residency requirement.',
+      'Option C loses: requires custom engineering to replicate the native SDLC context GitLab Duo provides natively; adds ongoing maintenance burden.',
+      'Option D loses: no native GitLab integration; would require migrating the CI/CD pipeline away from the firm\'s existing GitLab instance.'
+    ]
+  },
+  {
+    id: 'ds7',
+    title: 'Data Engineering Team — Agentic Lakehouse with Memory',
+    context: 'A data engineering team at a financial institution wants to build an AI agent that monitors their Databricks lakehouse for data quality anomalies, runs corrective SQL transformations when it finds issues, logs every action it takes with a rationale, and remembers the outcomes of past corrections to improve future decisions. The agent must never take a corrective action without logging its reasoning first.',
+    question: 'Which orchestration pattern and vendor stack is best suited to this closed-loop agentic memory requirement?',
+    opts: [
+      'LangChain agent + Pinecone (memory store) + Claude API (model) + custom Databricks SQL connector + custom logging',
+      'Databricks Mosaic AI Agent Framework — observe (Vector Search), reason (foundation model), act (Databricks Workflows), learn (persist memories to Delta Lake) — all within one governed lakehouse perimeter',
+      'AWS Bedrock Agents + Bedrock Knowledge Bases (memory) + custom Databricks integration via Lambda',
+      'Salesforce Agentforce + Data Cloud connector to Databricks'
+    ],
+    a: 1,
+    ex: 'Databricks Mosaic AI Agent Framework is the only option where the four-stage loop — observe, reason, act, learn — closes back into the same data platform the agent is monitoring. This is architecturally significant: (1) Vector Search provides retrieval over lakehouse data with Unity Catalog entitlements enforced; (2) the foundation model reasons over retrieved context; (3) Databricks Workflows executes corrective actions as governed, auditable pipeline runs — every action is a logged workflow run by design, satisfying the "log before act" requirement; (4) memories are persisted back to Delta Lake, making them queryable, auditable, and available for future agent sessions. No other option closes this loop natively. Option A requires custom logging, a custom Databricks connector, and a separate memory store — each a maintenance liability. Option B introduces AWS infrastructure into a Databricks-native environment, losing the Unity Catalog governance boundary. Option D (Agentforce) is a CRM orchestrator — it has no native data engineering or lakehouse workflow capability.',
+    losses: [
+      'Option A loses: custom logging, custom Databricks connector, and separate Pinecone memory store each add engineering and maintenance cost; logging is application-enforced not platform-enforced.',
+      'Option C loses: AWS Bedrock introduces a cross-platform boundary that breaks the Unity Catalog governance perimeter and requires custom Databricks integration.',
+      'Option D loses: Salesforce Agentforce is a CRM orchestrator with no native data engineering, SQL transformation, or lakehouse workflow capability.'
+    ]
+  }
+];
+
+var deepState = { idx: 0, answered: 0, correct: 0, locked: false, showLosses: false };
+
+function renderDeepScenarios(body) {
+  if(deepState.idx >= DEEP_SCENARIOS.length) {
+    body.innerHTML = '<div class="quiz-done">' +
+      '<p class="fc-progress" style="text-align:center;">ALL SCENARIOS COMPLETE</p>' +
+      '<div class="score">' + deepState.correct + ' / ' + DEEP_SCENARIOS.length + '</div>' +
+      '<p style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-dim)">Each scenario tests a real enterprise AI architecture decision under realistic constraints.</p>' +
+      '<div class="fc-actions"><button class="btn primary" id="dsRestart">Restart scenarios</button></div></div>';
+    document.getElementById('dsRestart').addEventListener('click', function() {
+      deepState = { idx: 0, answered: 0, correct: 0, locked: false, showLosses: false };
+      renderBody();
+    });
+    return;
+  }
+  var s = DEEP_SCENARIOS[deepState.idx];
+  var optsHtml = s.opts.map(function(opt, oi) {
+    return '<button class="opt" data-i="' + oi + '"><span class="tag">' + String.fromCharCode(65+oi) + '</span><span>' + opt + '</span></button>';
+  }).join('');
+
+  body.innerHTML =
+    '<div class="q-mode-row">' +
+      '<span class="q-progress">SCENARIO ' + (deepState.idx+1) + ' / ' + DEEP_SCENARIOS.length + '</span>' +
+      '<span class="q-progress">SCORE ' + deepState.correct + ' / ' + deepState.answered + '</span>' +
+    '</div>' +
+    '<div style="background:var(--surface-alt,var(--ltblue,#e8f0fe));border-left:4px solid var(--signal);border-radius:6px;padding:14px 16px;margin-bottom:14px;">' +
+      '<p style="font-size:11px;font-weight:700;color:var(--signal);letter-spacing:.08em;margin-bottom:6px;text-transform:uppercase;">SCENARIO: ' + s.title + '</p>' +
+      '<p style="font-size:13px;color:var(--text);line-height:1.6;margin:0;">' + s.context + '</p>' +
+    '</div>' +
+    '<p class="q-text">' + s.question + '</p>' +
+    '<div class="opts">' + optsHtml + '</div>' +
+    '<div class="explain" id="dsExplain" style="display:none;">' + s.ex + '</div>' +
+    '<div id="dsLossesWrap" style="display:none;">' +
+      '<p style="font-size:11px;font-weight:700;color:var(--signal);letter-spacing:.08em;margin:14px 0 8px;text-transform:uppercase;">WHY THE ALTERNATIVES LOSE</p>' +
+      s.losses.map(function(l) { return '<p style="font-size:12.5px;color:var(--text-dim);margin-bottom:6px;padding-left:12px;border-left:2px solid var(--rule);">' + l + '</p>'; }).join('') +
+    '</div>' +
+    '<div class="q-actions">' +
+      '<button class="btn primary" id="dsNext" style="display:none;">Next scenario</button>' +
+      '<button class="btn" id="dsLosses" style="display:none;margin-left:8px;">Why alternatives lose</button>' +
+    '</div>';
+
+  var locked = false;
+  document.querySelectorAll('.opt').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if(locked) return;
+      locked = true;
+      var chosen = parseInt(btn.dataset.i, 10);
+      document.querySelectorAll('.opt').forEach(function(b, bi) {
+        b.classList.add('locked');
+        if(bi === s.a) b.classList.add('correct');
+        else if(bi === chosen && chosen !== s.a) b.classList.add('wrong');
+      });
+      deepState.answered++;
+      if(chosen === s.a) deepState.correct++;
+      document.getElementById('dsExplain').style.display = 'block';
+      var nxtBtn = document.getElementById('dsNext');
+      var lossBtn = document.getElementById('dsLosses');
+      if(nxtBtn) nxtBtn.style.display = 'inline-block';
+      if(lossBtn) lossBtn.style.display = 'inline-block';
+    });
+  });
+
+  var nxt = document.getElementById('dsNext');
+  if(nxt) nxt.addEventListener('click', function() {
+    deepState.idx++;
+    deepState.locked = false;
+    document.getElementById('dsLossesWrap').style.display = 'none';
+    renderBody();
+  });
+
+  var lossToggle = document.getElementById('dsLosses');
+  if(lossToggle) lossToggle.addEventListener('click', function() {
+    var wrap = document.getElementById('dsLossesWrap');
+    if(wrap.style.display === 'none') {
+      wrap.style.display = 'block';
+      lossToggle.textContent = 'Hide alternatives';
+    } else {
+      wrap.style.display = 'none';
+      lossToggle.textContent = 'Why alternatives lose';
+    }
+  });
+}
+
+
 function chatErrorCopy(code){
   switch(code){
     case 'not_granted': return "Claude access was declined for this page, so this feature is unavailable for the rest of this visit.";
@@ -1148,6 +1371,8 @@ function renderBody(){
     renderFlashcards(body, l);
   } else if(state.tab === 'quiz'){
     renderQuiz(body, l);
+  } else if(state.tab === 'deepscenario'){
+    renderDeepScenarios(body);
   
   }
 }
