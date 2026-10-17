@@ -1,6 +1,7 @@
 MONETARY AUTHORITY OF SINGAPORE - FEAT PRINCIPLES
 FAIRNESS, ETHICS, ACCOUNTABILITY AND TRANSPARENCY IN AI
-Source: MAS FEAT Principles, 2019, applicable to financial institutions in Singapore
+Source: MAS FEAT Principles, published November 2018 (updated February 2019), applicable to financial institutions in Singapore
+Status: principles-based guidance, not legislation; MAS supervision treats adherence as an expectation
 
 PURPOSE
 The MAS FEAT Principles provide guidance to financial institutions using AI and
