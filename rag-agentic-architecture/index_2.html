@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Enterprise RAG and agentic AI reference architecture</title>
+<meta name="description" content="An interactive, layered reference architecture for enterprise RAG and agentic AI in banking: orchestration, retrieval, tools, generation, ingestion and the medallion data platform.">
+<meta name="author" content="Shantanu Dasgupta">
+<meta property="og:title" content="Enterprise RAG and agentic AI: an interactive reference architecture">
+<meta property="og:description" content="Watch four request types move through the layers: a RAG question, a Text-to-SQL query, a human-approved write action and an ingestion run.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F7F8FA;--panel:#FFFFFF;--ink:#1B2433;--muted:#5B6475;--faint:#7E8697;--line:#D9DDE4;
+  --on-fill:#E9ECF8;--on-stroke:#4453A6;--on-ink:#232C6B;--on-sub:#4453A6;
+  --off-fill:#E3F2EF;--off-stroke:#11756B;--off-ink:#0B4A44;--off-sub:#11756B;
+  --x-fill:#EEF0F3;--x-stroke:#7A808A;--x-ink:#2E333B;--x-sub:#5F6570;
+  --cur:#B86E05;--cur-bg:#FFF3DF;--edge:#8A92A3;--sel:#4453A6;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11151C;--panel:#181D26;--ink:#E6E9EF;--muted:#A6AEBD;--faint:#8891A2;--line:#2C3340;
+    --on-fill:#232A4D;--on-stroke:#8E9BE0;--on-ink:#DDE2FA;--on-sub:#AEB8EE;
+    --off-fill:#123631;--off-stroke:#5CC2B3;--off-ink:#D2F0EB;--off-sub:#8ED7CB;
+    --x-fill:#20252E;--x-stroke:#8A919C;--x-ink:#E3E6EB;--x-sub:#B4BAC4;
+    --cur:#F0A93A;--cur-bg:#3A2C14;--edge:#7C8596;--sel:#AEB8EE;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11151C;--panel:#181D26;--ink:#E6E9EF;--muted:#A6AEBD;--faint:#8891A2;--line:#2C3340;
+  --on-fill:#232A4D;--on-stroke:#8E9BE0;--on-ink:#DDE2FA;--on-sub:#AEB8EE;
+  --off-fill:#123631;--off-stroke:#5CC2B3;--off-ink:#D2F0EB;--off-sub:#8ED7CB;
+  --x-fill:#20252E;--x-stroke:#8A919C;--x-ink:#E3E6EB;--x-sub:#B4BAC4;
+  --cur:#F0A93A;--cur-bg:#3A2C14;--edge:#7C8596;--sel:#AEB8EE;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.5}
+.wrap{display:grid;grid-template-columns:380px minmax(0,1fr);gap:28px;max-width:1400px;margin:0 auto;padding:20px 24px}
+aside{position:sticky;top:20px;align-self:start;max-height:calc(100vh - 40px);overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+h1{font-size:19px;font-weight:600;line-height:1.3;margin:0}
+.sub{color:var(--muted);font-size:13px;margin:4px 0 0}
+.group{display:flex;flex-wrap:wrap;gap:6px}
+button{font:inherit;font-size:13px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 11px;cursor:pointer}
+button:hover{border-color:var(--faint)}
+button:focus-visible,.n:focus-visible{outline:2px solid var(--sel);outline-offset:2px}
+button.sel{border-color:var(--sel);color:var(--sel);font-weight:500}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+#cnt{font-size:12px;color:var(--faint)}
+#ttl{font-size:16px;font-weight:600;margin:2px 0 4px}
+#dsc{font-size:14px;color:var(--muted);margin:0}
+#prd{font-size:12.5px;color:var(--faint);margin:8px 0 0}
+ol{list-style:none;margin:0;padding:0;counter-reset:s}
+ol li button{width:100%;text-align:left;border:none;background:transparent;border-radius:6px;padding:5px 8px;display:flex;gap:10px;align-items:baseline;color:var(--muted)}
+ol li button::before{counter-increment:s;content:counter(s);font-size:12px;color:var(--faint);min-width:16px;text-align:right}
+ol li button.done{color:var(--ink)}
+ol li button.now{background:var(--cur-bg);color:var(--ink);font-weight:500}
+ol li button.now::before{color:var(--cur)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;border:1px solid}
+.lg-on::before{background:var(--on-fill);border-color:var(--on-stroke)!important}
+.lg-off::before{background:var(--off-fill);border-color:var(--off-stroke)!important}
+.lg-x::before{background:var(--x-fill);border-color:var(--x-stroke)!important}
+.lg-cur::before{background:var(--cur-bg);border-color:var(--cur)!important}
+main{min-width:0}
+svg{display:block;width:100%;height:calc(100vh - 40px);max-height:980px}
+svg text{font-family:inherit}
+.band{fill:none;stroke:var(--line);stroke-width:1}
+.bandlbl{fill:var(--faint);font-size:12px}
+.n{cursor:pointer;transition:opacity .3s}
+.n rect{stroke-width:1;transition:stroke .3s,stroke-width .3s}
+.n.on-lane rect{fill:var(--on-fill);stroke:var(--on-stroke)}
+.n.on-lane .t1{fill:var(--on-ink)}.n.on-lane .t2{fill:var(--on-sub)}
+.n.off-lane rect{fill:var(--off-fill);stroke:var(--off-stroke)}
+.n.off-lane .t1{fill:var(--off-ink)}.n.off-lane .t2{fill:var(--off-sub)}
+.n.x-lane rect{fill:var(--x-fill);stroke:var(--x-stroke)}
+.n.x-lane .t1{fill:var(--x-ink)}.n.x-lane .t2{fill:var(--x-sub)}
+.t1{font-size:14px;font-weight:500}.t2{font-size:12px}
+svg.run .n{opacity:.28}
+svg.run .n.x-lane,svg.run .n.on{opacity:1}
+svg .n.cur rect{stroke:var(--cur);stroke-width:2.5}
+.e{stroke:var(--edge);stroke-width:1.2;fill:none;transition:opacity .3s}
+.e.teal{stroke:var(--off-stroke)}
+svg.run .e{opacity:.2}
+svg.run .e.on{opacity:1;stroke-width:2;stroke-dasharray:5 3}
+@media (prefers-reduced-motion:no-preference){svg.run .e.on{animation:flow .8s linear infinite}}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.note{font-size:12px;color:var(--faint);margin:0}
+@media (max-width:920px){
+  .wrap{grid-template-columns:minmax(0,1fr);padding:14px}
+  aside{position:static;max-height:none}
+  svg{height:auto;max-height:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<aside>
+  <div>
+    <h1>Enterprise RAG and agentic AI reference architecture</h1>
+    <p class="sub">Pick a scenario to watch a request move through the layers. Select any box for detail and example products.</p>
+  </div>
+  <div class="group" role="group" aria-label="Scenario">
+    <button class="sc sel" data-k="policy">Policy question (RAG)</button>
+    <button class="sc" data-k="numeric">Numeric query (Text-to-SQL)</button>
+    <button class="sc" data-k="write">Write action (HITL)</button>
+    <button class="sc" data-k="ingest">Ingestion run</button>
+  </div>
+  <div class="group">
+    <button id="play">Pause</button>
+    <button id="prev">Back</button>
+    <button id="next">Next</button>
+    <button id="view">Show functions</button>
+  </div>
+  <div class="card" aria-live="polite">
+    <div id="cnt">Step 1</div>
+    <div id="ttl"></div>
+    <p id="dsc"></p>
+    <p id="prd"></p>
+  </div>
+  <ol id="steps"></ol>
+  <div class="legend">
+    <span class="lg-on">Online path</span>
+    <span class="lg-off">Offline path</span>
+    <span class="lg-x">Cross-cutting</span>
+    <span class="lg-cur">Current step</span>
+  </div>
+  <p class="note">Products shown are illustrative examples, not endorsements. Scenarios are generic and do not depict any institution’s systems.</p>
+  <p class="note">Created by Shantanu Dasgupta as personal work for learning and discussion. Views are my own.</p>
+</aside>
+<main>
+<svg id="dg" class="run" viewBox="0 0 680 756" preserveAspectRatio="xMidYMin meet" role="img" aria-labelledby="dgt">
+<title id="dgt">Layered architecture: experience, orchestration, retrieval, tools and generation layers online; ingestion pipeline and medallion data platform offline; security and LLMOps cross-cutting.</title>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<g id="layers"></g>
+</svg>
+</main>
+</div>
+<script>
+const X=[52,200,348,496],W=132;
+const B=[
+{y:66,l:'Experience layer',c:'on-lane',b:[['ux1','Chat / voice UI','Web, mobile','React, MS Teams'],['ux2','Speech-to-text','Voice input','Whisper, Azure STT'],['ux3','Session memory','Conversation state','Redis, Postgres'],['ux4','Answer renderer','Citations, charts','React, Streamlit']],e:[[0,1],[1,2]]},
+{y:156,l:'Orchestration layer (agentic)',c:'on-lane',b:[['or1','Input guardrail','Policy, PII, injection','NeMo Guardrails'],['or2','Intent router','Classify and route','Semantic Router'],['or3','Query rewriter','Rewrite, decompose','HyDE, multi-query'],['or4','Orchestrator','Agent plans tools','LangGraph, CrewAI']],e:[[0,1],[1,2],[2,3]]},
+{y:246,l:'Retrieval layer (RAG)',c:'on-lane',b:[['rt1','Query embedding','Embedding model','Cohere, BGE-M3'],['rt2','Vector database','ANN, ACL filter','pgvector, Milvus'],['rt3','Keyword index','BM25 sparse search','Elasticsearch'],['rt4','Reranker','Cross-encoder','Cohere Rerank']],e:[[0,1],[2,3]]},
+{y:336,l:'Tools layer (function calling)',c:'on-lane',b:[['tl1','Text-to-SQL','Queries Gold','Cortex, Genie'],['tl2','Read APIs','Rates, limits, CRM','Treasury, CRM APIs'],['tl3','Tool registry','MCP / schemas','MCP servers'],['tl4','Write tools','Human-in-the-loop','HITL via Camunda']],e:[]},
+{y:426,l:'Generation layer',c:'on-lane',b:[['gn1','Context builder','Prompt assembly','LlamaIndex'],['gn2','LLM gateway','Routing, fallback','LiteLLM, Portkey'],['gn3','LLM','Answer synthesis','Claude, GPT, Llama'],['gn4','Output guardrail','Grounding check','Guardrails AI']],e:[[0,1],[1,2],[2,3]]},
+{y:572,l:'Ingestion pipeline (offline)',c:'off-lane',b:[['in1','Doc parsing','Loaders, OCR','Unstructured.io'],['in2','Chunking','Size, overlap','LangChain splitter'],['in3','Embedding model','Batch vectors','Cohere, BGE-M3'],['in4','Index upsert','Vectors + ACL tags','Airflow, Spark']],e:[[0,1],[1,2],[2,3]]},
+{y:662,l:'Data platform (medallion lakehouse)',c:'off-lane',b:[['dp1','Bronze','Raw landing','ADLS / S3'],['dp2','Silver','Cleansed','Databricks, Spark'],['dp3','Gold','Curated marts','Delta, Iceberg'],['dp4','Data catalogue','Lineage, metadata','Unity, Collibra']],e:[[0,1],[1,2]]}];
+const G=[{y:10,id:'sec',t:'Security and governance (cross-cutting)',f:'IAM, RBAC, document-level security, audit trail, model risk',p:'Entra ID / Okta, Unity Catalog / Ranger, HashiCorp Vault, Splunk'},
+{y:516,id:'obs',t:'LLMOps: observability and evaluation (cross-cutting)',f:'Tracing, faithfulness, context relevance, latency, token cost',p:'Langfuse, LangSmith, Arize Phoenix, Ragas, OpenTelemetry'}];
+let h='',EDGES=[],SUB=[],prodView=true;
+G.forEach(g=>{SUB.push([g.id,g.f,g.p]);h+=`<g class="n x-lane" id="n-${g.id}" data-id="${g.id}" tabindex="0" role="button"><rect x="40" y="${g.y}" width="600" height="46" rx="8"/><text class="t1" x="340" y="${g.y+15}" text-anchor="middle" dominant-baseline="central">${g.t}</text><text class="t2" id="s-${g.id}" x="340" y="${g.y+32}" text-anchor="middle" dominant-baseline="central">${g.p}</text></g>`;});
+B.forEach(L=>{h+=`<rect class="band" x="40" y="${L.y}" width="600" height="80" rx="12"/><text class="bandlbl" x="54" y="${L.y+14}" dominant-baseline="central">${L.l}</text>`;
+L.b.forEach((b,k)=>{SUB.push([b[0],b[2],b[3]]);const x=X[k],y=L.y+26,dash=b[0]==='tl4'?' stroke-dasharray="4 3"':'';h+=`<g class="n ${L.c}" id="n-${b[0]}" data-id="${b[0]}" tabindex="0" role="button"><rect x="${x}" y="${y}" width="${W}" height="48" rx="8"${dash}/><text class="t1" x="${x+W/2}" y="${y+16}" text-anchor="middle" dominant-baseline="central">${b[1]}</text><text class="t2" id="s-${b[0]}" x="${x+W/2}" y="${y+33}" text-anchor="middle" dominant-baseline="central">${b[3]}</text></g>`;});
+L.e.forEach(([a,c])=>{const f=L.b[a][0],t=L.b[c][0],y=L.y+50;EDGES.push([f,t]);h+=`<line class="e${L.c==='off-lane'?' teal':''}" id="e-${f}-${t}" x1="${X[a]+W}" y1="${y}" x2="${X[c]-2}" y2="${y}" marker-end="url(#arrow)"/>`;});});
+document.getElementById('layers').innerHTML=h;
+
+const S={
+policy:[
+{n:['ux1','ux2'],t:'Voice query captured',d:'A relationship manager asks by voice: what is our FX hedging policy for exporters? Speech-to-text transcribes it.'},
+{n:['ux3'],t:'Session memory',d:'Adds conversation history, user role and desk to the request.'},
+{n:['or1'],t:'Input guardrail',d:'Blocks prompt injection and policy violations, and masks PII.'},
+{n:['or2'],t:'Intent router',d:'Classifies this as a knowledge question, so the RAG path is chosen.'},
+{n:['or3','or4'],t:'Query rewriter and orchestrator',d:'The query is rewritten into search-ready form, and the orchestrator invokes the retrieval tool.'},
+{n:['rt1'],t:'Query embedding',d:'The same embedding model used at ingestion converts the query into a vector.'},
+{n:['rt2','rt3'],t:'Hybrid search',d:'The vector database (semantic ANN) and keyword index (BM25) run in parallel, both filtered by the user’s document permissions.'},
+{n:['rt4'],t:'Reranker',d:'A cross-encoder rescores the merged results and keeps the top few chunks.'},
+{n:['gn1'],t:'Context builder',d:'Assembles the system prompt, retrieved chunks with source IDs, and the question within the context window.'},
+{n:['gn2','gn3'],t:'LLM gateway and LLM',d:'The gateway selects the model and applies rate limits and fallback. The LLM writes an answer grounded in the chunks.'},
+{n:['gn4'],t:'Output guardrail',d:'Checks each claim against the retrieved chunks and enforces citations.'},
+{n:['ux4'],t:'Answer renderer',d:'Shows the answer with clickable citations. The full trace is logged to LLMOps.'}],
+numeric:[
+{n:['ux1'],t:'Query typed',d:'A dealer asks: net USD/INR exposure by desk right now.'},
+{n:['ux3'],t:'Session memory',d:'Adds user role, desk and conversation context.'},
+{n:['or1'],t:'Input guardrail',d:'Policy, injection and PII checks.'},
+{n:['or2'],t:'Intent router',d:'Classifies this as a numeric question, so the vector path is skipped entirely.'},
+{n:['or4'],t:'Orchestrator',d:'Plans a tool call rather than a search.'},
+{n:['tl3'],t:'Tool registry',d:'Resolves the Text-to-SQL tool’s schema and permissions.'},
+{n:['tl1','dp3'],t:'Text-to-SQL on Gold',d:'Generates and runs SQL against curated Gold tables under the user’s entitlements.'},
+{n:['gn1','gn2','gn3'],t:'Context builder, gateway and LLM',d:'The LLM narrates the returned figures without recalculating them.'},
+{n:['gn4'],t:'Output guardrail',d:'Verifies every number in the answer matches the query result exactly.'},
+{n:['ux4'],t:'Answer renderer',d:'Shows the figures with source table and data timestamp.'}],
+write:[
+{n:['ux1'],t:'Request typed',d:'Sales asks: book a 3-month USD/INR forward for client X.'},
+{n:['ux3'],t:'Session memory',d:'Adds user role, desk and client context.'},
+{n:['or1'],t:'Input guardrail',d:'Policy, injection and PII checks.'},
+{n:['or2'],t:'Intent router',d:'Classifies this as a state-changing action.'},
+{n:['or4'],t:'Orchestrator',d:'Plans a pre-trade check followed by a booking request.'},
+{n:['tl3'],t:'Tool registry',d:'Write tools are flagged as requiring human approval.'},
+{n:['tl2'],t:'Read APIs',d:'Pulls client limits, credit line and indicative rate from the treasury system and CRM.'},
+{n:['tl4'],t:'Write tools: human-in-the-loop',d:'The proposed deal goes to an authorised approver via workflow. Nothing books until it is approved.'},
+{n:['ux4'],t:'Answer renderer',d:'Shows confirmation or rejection, with a full audit trail of who approved what.'}],
+ingest:[
+{n:['dp1'],t:'Bronze',d:'Raw files and feeds land unchanged: policies, term sheets, market data.'},
+{n:['dp2'],t:'Silver',d:'Data is cleansed, deduplicated and conformed.'},
+{n:['in1'],t:'Doc parsing',d:'Document loaders extract text and tables. OCR handles scanned documents.'},
+{n:['in2'],t:'Chunking',d:'Documents are split into retrievable chunks, with size and overlap tuned per document type.'},
+{n:['in3'],t:'Embedding model',d:'Each chunk is converted into a vector, using the same model as query embedding.'},
+{n:['in4'],t:'Index upsert',d:'An Airflow or Spark job writes vectors and text to the vector database and keyword index, tagged with access-control metadata.'},
+{n:['rt2','rt3'],t:'Indexes live',d:'Retrieval now sees the new content on the next query.'},
+{n:['dp3','dp4'],t:'Gold and data catalogue',d:'Structured data is curated into Gold tables and registered in the catalogue so Text-to-SQL can use it.'}]};
+
+const I={sec:['Security and governance','IAM and RBAC, document-level security enforced inside retrieval, tool permissions, secrets management, audit trail, and model risk approval before production.','Entra ID, Okta, Unity Catalog, Apache Ranger, HashiCorp Vault, Splunk / SIEM'],
+obs:['LLMOps: observability and evaluation','End-to-end tracing per hop, faithfulness and context relevance scoring, latency and token cost, with failures fed back into evaluation sets.','Langfuse, LangSmith, Arize Phoenix, Ragas, DeepEval, OpenTelemetry, Datadog LLM Observability'],
+ux1:['Chat / voice UI','The front end where users type or speak.','React / Next.js, Microsoft Teams app, mobile banking app SDK'],
+ux2:['Speech-to-text','Transcribes voice input before it enters the pipeline.','OpenAI Whisper, Azure AI Speech, Google Speech-to-Text, Deepgram'],
+ux3:['Session memory','Short-term conversation state plus user and role context.','Redis, PostgreSQL, LangGraph checkpointer, Zep'],
+ux4:['Answer renderer','Displays answers with citations, tables or charts, and captures user feedback.','React, Streamlit, Chainlit, Teams adaptive cards'],
+or1:['Input guardrail','Screens for prompt injection, policy violations and PII before anything else runs.','NVIDIA NeMo Guardrails, Llama Guard, Azure AI Content Safety, Microsoft Presidio (PII)'],
+or2:['Intent router','Classifies the request and decides which path handles it: RAG, structured tools, or write actions.','Semantic Router, a small fine-tuned classifier, or an LLM router in LangGraph'],
+or3:['Query rewriter','Rewrites, expands or decomposes the query so retrieval works better.','Techniques rather than products: HyDE, multi-query, step-back prompting, query decomposition'],
+or4:['Orchestrator','The agent runtime that plans steps, calls tools and manages state.','LangGraph, CrewAI, Microsoft Semantic Kernel / AutoGen, AWS Bedrock Agents, Google ADK'],
+rt1:['Query embedding','Embeds the user query with the same model used at ingestion.','Cohere Embed, OpenAI text-embedding-3, BGE-M3, E5, Voyage'],
+rt2:['Vector database','Stores chunk embeddings and runs approximate nearest neighbour search with metadata and ACL filters.','pgvector, Milvus, Qdrant, Weaviate, Pinecone, Azure AI Search, OpenSearch'],
+rt3:['Keyword index','Sparse BM25 search, which catches exact terms such as product codes, ISINs and jargon.','Elasticsearch, OpenSearch, Azure AI Search (hybrid mode)'],
+rt4:['Reranker','A cross-encoder that rescores candidate chunks for precision.','Cohere Rerank, BGE Reranker, Jina Reranker, Voyage Rerank'],
+tl1:['Text-to-SQL','Converts questions into SQL over Gold tables. The correct path for figures.','Snowflake Cortex Analyst, Databricks Genie, Vanna.ai, an LLM over a dbt semantic layer'],
+tl2:['Read APIs','Read-only calls to live systems such as rates, limits and CRM.','Treasury platform APIs (e.g. Murex, Calypso), Bloomberg / LSEG feeds, Salesforce, internal REST via API gateway'],
+tl3:['Tool registry','Catalogue of tool schemas and permissions exposed to agents.','Model Context Protocol (MCP) servers, OpenAPI specs, API gateway (Kong, Apigee)'],
+tl4:['Write tools','Any tool that changes state. Always gated by human approval.','Camunda, Pega or ServiceNow approval workflows, LangGraph interrupt nodes'],
+gn1:['Context builder','Assembles the prompt from instructions, retrieved chunks, tool results and the question.','LlamaIndex, LangChain prompt templates, DSPy'],
+gn2:['LLM gateway','Model routing, fallback, rate limiting, caching and cost control.','LiteLLM, Portkey, Kong AI Gateway, Azure API Management'],
+gn3:['LLM','The foundation model that synthesises the answer.','Claude, GPT, Gemini, Llama or Mistral (self-hosted), via Bedrock, Azure OpenAI, Vertex or on-premises'],
+gn4:['Output guardrail','Groundedness checks, citation enforcement, and PII or MNPI leakage checks.','Guardrails AI, NeMo Guardrails, Azure groundedness detection, Presidio'],
+in1:['Doc parsing','Document loaders and OCR that turn files into clean text and tables.','Unstructured.io, Docling, Azure Document Intelligence, AWS Textract, LlamaParse'],
+in2:['Chunking','Splits documents into chunks, by size, structure or semantics, with overlap.','LangChain text splitters, LlamaIndex node parsers, semantic chunking'],
+in3:['Embedding model','Converts chunks into vectors in batch. Must match the query embedding model.','Cohere Embed, OpenAI text-embedding-3, BGE-M3, E5'],
+in4:['Index upsert','Writes vectors and ACL metadata into the vector database and keyword index.','Apache Airflow, Spark jobs, Databricks Workflows, Kafka for change data capture'],
+dp1:['Bronze','Raw landing zone, data stored as received.','ADLS Gen2, Amazon S3, on-premises HDFS'],
+dp2:['Silver','Cleansed, deduplicated and conformed data.','Databricks, Apache Spark, dbt'],
+dp3:['Gold','Curated, business-ready tables used by Text-to-SQL.','Delta Lake, Apache Iceberg, Snowflake'],
+dp4:['Data catalogue','Lineage, ownership and metadata for governance.','Unity Catalog, Collibra, Alation, Microsoft Purview']};
+
+let cur='policy',i=0,timer=null,playing=true;
+const dg=document.getElementById('dg'),$=id=>document.getElementById(id);
+function clearHL(){document.querySelectorAll('.n').forEach(x=>x.classList.remove('on','cur'));document.querySelectorAll('.e').forEach(x=>x.classList.remove('on'));}
+function buildSteps(){const ol=$('steps');ol.innerHTML='';S[cur].forEach((s,k)=>{const li=document.createElement('li'),b=document.createElement('button');b.textContent=s.t;b.addEventListener('click',()=>{setPlaying(false);i=k;render();});li.appendChild(b);ol.appendChild(li);});}
+function render(){clearHL();dg.classList.add('run');const st=S[cur],on=new Set();
+for(let k=0;k<=i;k++)st[k].n.forEach(id=>{on.add(id);$('n-'+id).classList.add('on');});
+st[i].n.forEach(id=>$('n-'+id).classList.add('cur'));
+EDGES.forEach(([f,t])=>{if(on.has(f)&&on.has(t))$('e-'+f+'-'+t).classList.add('on');});
+$('cnt').textContent='Step '+(i+1)+' of '+st.length;$('ttl').textContent=st[i].t;$('dsc').textContent=st[i].d;
+$('prd').textContent='Examples: '+st[i].n.map(id=>I[id][2]).join(' | ');
+document.querySelectorAll('#steps button').forEach((b,k)=>{b.classList.toggle('now',k===i);b.classList.toggle('done',k<i);});}
+function next(){i=(i<S[cur].length-1)?i+1:0;render();}
+function prev(){i=(i>0)?i-1:S[cur].length-1;render();}
+function startTimer(){stopTimer();timer=setInterval(next,3000);}
+function stopTimer(){if(timer){clearInterval(timer);timer=null;}}
+function setPlaying(p){playing=p;$('play').textContent=p?'Pause':'Play';if(p)startTimer();else stopTimer();}
+function pick(k){cur=k;i=0;document.querySelectorAll('.sc').forEach(b=>b.classList.toggle('sel',b.dataset.k===k));buildSteps();render();if(playing)startTimer();}
+function info(k){setPlaying(false);clearHL();dg.classList.remove('run');$('n-'+k).classList.add('cur');
+$('cnt').textContent='Component';$('ttl').textContent=I[k][0];$('dsc').textContent=I[k][1];$('prd').textContent='Examples: '+I[k][2];
+document.querySelectorAll('#steps button').forEach(b=>b.classList.remove('now','done'));}
+document.querySelectorAll('.sc').forEach(b=>b.addEventListener('click',()=>pick(b.dataset.k)));
+$('play').addEventListener('click',()=>setPlaying(!playing));
+$('next').addEventListener('click',()=>{setPlaying(false);next();});
+$('prev').addEventListener('click',()=>{setPlaying(false);prev();});
+$('view').addEventListener('click',()=>{prodView=!prodView;SUB.forEach(([id,f,p])=>{$('s-'+id).textContent=prodView?p:f;});$('view').textContent=prodView?'Show functions':'Show products';});
+document.querySelectorAll('.n').forEach(n=>{n.addEventListener('click',()=>info(n.dataset.id));n.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();info(n.dataset.id);}});});
+document.addEventListener('keydown',ev=>{if(ev.target.closest&&ev.target.closest('.n'))return;if(ev.key==='ArrowRight'){setPlaying(false);next();}else if(ev.key==='ArrowLeft'){setPlaying(false);prev();}});
+buildSteps();render();
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){setPlaying(false);}else{startTimer();}
+</script>
+</body>
+</html>
