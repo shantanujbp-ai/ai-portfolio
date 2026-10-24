@@ -342,6 +342,16 @@
   }
   .fresh-badge.fresh{color:var(--good); border-color:var(--good);}
   .fresh-badge.stale{color:var(--bad); border-color:var(--bad);}
+  .sc-intro{font-size:13px; color:var(--text-dim); line-height:1.55; margin:0 0 12px; padding:10px 12px; border-left:3px solid var(--signal); background:var(--steel-tint);}
+  .sc-intro button{margin-left:8px;}
+  details.scorecard{margin-top:10px; border:1px solid var(--rule); border-radius:6px; padding:0 12px;}
+  details.scorecard summary{cursor:pointer; font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--steel); padding:8px 0;}
+  details.scorecard[open] summary{border-bottom:1px solid var(--rule); margin-bottom:8px;}
+  details.scorecard dl{margin:0 0 10px; display:grid; grid-template-columns:130px 1fr; gap:6px 14px; font-size:13px; line-height:1.5;}
+  details.scorecard dt{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--text-dim); padding-top:2px;}
+  details.scorecard dd{margin:0; color:var(--text);}
+  details.scorecard dd.avoid{color:var(--bad);}
+  @media (max-width:600px){ details.scorecard dl{grid-template-columns:1fr;} details.scorecard dt{padding-top:6px;} }
   @media (max-width:600px){ .fresh-badge{ display:inline-block; margin:4px 0 0; } }
 
   /* mode switch (quiz) */
@@ -1025,6 +1035,248 @@ function bumpLayerStat(layerId, correct){
 // ---------- capability bootstrap (sample + db) ----------
 var sampleNS = null;
 var dbNS = null;
+var SCORECARDS = {
+ "Anthropic &middot; Claude": {
+  "b": "Long-form reasoning, coding and agentic work where instruction-following and safety posture matter, especially in regulated enterprises.",
+  "d": "Direct API, or through AWS Bedrock, Google Vertex AI and Microsoft Foundry. Claude Enterprise adds SSO, SCIM and audit logging.",
+  "r": "Regional residency and VPC boundaries are mostly inherited from the hyperscaler route you choose, not a separate Anthropic-hosted region.",
+  "t": "You route across three tiers (Haiku, Sonnet, Opus) by cost and latency, and there are no open weights to self-host.",
+  "i": "Strong. MCP for tools and data, an Agent SDK, and availability inside the major clouds you may already contract with.",
+  "n": "When you need self-hosted or air-gapped weights, or a sovereign in-country model."
+ },
+ "OpenAI": {
+  "b": "Agentic apps and long chain-of-thought reasoning where tools are called mid-reasoning (o-series).",
+  "d": "Responses API directly, with regional enterprise deployments usually delivered through Azure OpenAI.",
+  "r": "In practice usually delivered through regional Azure OpenAI deployments rather than by OpenAI directly.",
+  "t": "Closed weights, and regional control depends on a partner cloud.",
+  "i": "Broad framework support. Encrypted reasoning items let reasoning be reused across requests without server-side storage.",
+  "n": "When data must stay in a specific sovereign region without a hyperscaler in between, or you need on-prem weights."
+ },
+ "Google &middot; Gemini": {
+  "b": "Natively multimodal workloads (text, image, audio, video) for organisations already running on Google Cloud.",
+  "d": "Vertex AI plus the Gemini Enterprise agent platform, on Google TPU-backed infrastructure.",
+  "r": "Runs inside the customer's existing Google Cloud project and region, so residency follows the region you already use.",
+  "t": "Independent analysis flags no native enforcement of data lineage, quality or policy across the wider enterprise data estate.",
+  "i": "Best when Drive and Google Cloud data are central. Connectors cover SharePoint, Salesforce, ServiceNow, Confluence and Jira.",
+  "n": "When your data estate sits outside Google Cloud and you need cross-system policy enforcement built in."
+ },
+ "AWS &middot; Bedrock": {
+  "b": "One governed gateway to many third-party models, so you can switch models without re-platforming.",
+  "d": "Managed service with four runtime APIs (Converse, InvokeModel, async, and batch at about 50% lower cost) and cross-Region inference profiles.",
+  "r": "Calls stay in the chosen AWS Region over private VPC endpoints. Prompts are not used to train provider models. Holds SOC, ISO, HIPAA-eligible, PCI DSS and FedRAMP High (GovCloud) certifications.",
+  "t": "The differentiator is breadth, not a frontier model of its own. The strongest models are other vendors' models.",
+  "i": "Strong for AWS-native estates: IAM, CloudTrail, CloudWatch, Knowledge Bases and Guardrails.",
+  "n": "When your estate is not on AWS, or you need one vendor accountable for the model itself."
+ },
+ "Microsoft &middot; Azure AI": {
+  "b": "Enterprises already on Microsoft 365 and Entra that want OpenAI models at enterprise SLA.",
+  "d": "Azure OpenAI Service for OpenAI's models, and Azure AI Foundry as a broader catalog and serving surface.",
+  "r": "Governance rides on existing Microsoft 365 identity and permissions through Entra. Agent 365 provides audit for autonomous agents.",
+  "t": "Frontier capability mainly arrives through the OpenAI partnership. The bet is integration and identity, not model differentiation.",
+  "i": "Very strong inside the Microsoft estate: Microsoft 365 content, analytics platform and SQL databases.",
+  "n": "When you are not a Microsoft shop, or do not want frontier capability to hinge on one partnership."
+ },
+ "Mistral AI": {
+  "b": "European organisations that need GDPR-aligned domicile and the option to run the same weights managed or air-gapped.",
+  "d": "La Plateforme managed API under EU data-processing agreements, or open weights on your own hardware.",
+  "r": "Paris-headquartered, inside GDPR jurisdiction with no EU-representative chain. The company argues it sits outside US CLOUD Act reach.",
+  "t": "Open-weight models carry a research license. Commercial production use needs a separate paid license.",
+  "i": "Works as a hosted API or self-hosted model with common frameworks. Vibe adds an agentic platform and Studio and Forge support customization.",
+  "n": "When frontier-scale general capability is the deciding factor, or Indic-language depth is required."
+ },
+ "Sarvam AI": {
+  "b": "Indian-language workloads (22 to 23 Indic languages) with sovereign data requirements.",
+  "d": "Sarvam Cloud managed, private VPC, or fully air-gapped on-prem.",
+  "r": "Sovereign compute on Indian infrastructure, with DPDP Act compliance native rather than adapted after the fact.",
+  "t": "Targets Indic breadth and frugal training rather than raw general-purpose scale, and leaves orchestration to your stack.",
+  "i": "Positioned as the model and language layer called by your own orchestration (for example LangChain), with bring-your-own-model portability.",
+  "n": "When you need frontier general reasoning for English-first work, or a ready-made agent framework."
+ },
+ "Gnani.ai": {
+  "b": "Live voice automation in call centres, including 8kHz telephony audio and sub-second voice-biometric verification.",
+  "d": "Managed or on-prem-ready deployment, marketed for BFSI.",
+  "r": "On-prem-ready for workflows where call recordings legally cannot leave the bank's own infrastructure.",
+  "t": "Domain-specific speech models, not a general-purpose text foundation model.",
+  "i": "Fits a bank's existing telephony and BFSI workflows such as collections, loan servicing and payment reminders.",
+  "n": "When the use case is text-only reasoning or a general-purpose assistant."
+ },
+ "GitLab Duo": {
+  "b": "AI assistance across the software delivery lifecycle: code, issues, merge requests and pipelines.",
+  "d": "Runs in a self-managed or dedicated GitLab instance. The model is chosen per agent (Claude, Codex, Gemini or Amazon Q).",
+  "r": "Full session logs and orchestration stay inside the customer's own GitLab instance.",
+  "t": "Trains and serves no model of its own, so quality and cost depend on the external model you select.",
+  "i": "Native to GitLab. Limited value outside a GitLab-centred workflow.",
+  "n": "When your delivery pipeline is not on GitLab, or you need a general-purpose model platform."
+ },
+ "LangChain (open frameworks)": {
+  "b": "Teams assembling custom agent and RAG pipelines who want to stay model-agnostic.",
+  "d": "Open-source Python and JavaScript framework that you host yourself. No hosted model.",
+  "r": "No residency posture of its own. It is inherited from where you deploy and which model APIs you call.",
+  "t": "Flexibility comes with the burden of operating, securing and governing the pipeline in-house.",
+  "i": "Wide provider support (OpenAI, Anthropic, Bedrock, Ollama, Hugging Face) and many vector stores.",
+  "n": "When you lack engineering capacity, or need a managed, certified platform with a single accountable vendor."
+ },
+ "Meta &middot; Llama": {
+  "b": "Self-hosted open-weight models where you control the data perimeter and want to fine-tune.",
+  "d": "Downloadable weights under a custom community license. Served through partners (Groq, Together.ai, Fireworks, Replicate) or self-hosted with vLLM or Ollama.",
+  "r": "The strongest posture short of building your own model: run fully on-premises with no data leaving.",
+  "t": "No first-party managed serving, so latency, cost and safety tooling depend on the serving choices you make.",
+  "i": "Broad ecosystem support. Llama 4 Scout offers a 10-million-token context window.",
+  "n": "When you lack ML operations capacity, or need a vendor-backed SLA out of the box."
+ },
+ "Hugging Face": {
+  "b": "Discovering, evaluating and loading open models. It is the registry underneath many other stacks.",
+  "d": "Inference Providers gateway, dedicated Inference Endpoints with private VPC isolation, Spaces for demos, and on-device export.",
+  "r": "Depends on which serving surface you pick. Private VPC isolation is available on dedicated endpoints.",
+  "t": "Owns an opinionated choice at no layer. Model and dataset cards document provenance but do not enforce anything.",
+  "i": "The Transformers SDK is how most other vendors' models are loaded. Hosts 2.4M+ models.",
+  "n": "When you need one accountable vendor for a production, audited model service."
+ },
+ "NVIDIA": {
+  "b": "GPU-native production serving, and the hardware and tooling beneath other labs' models.",
+  "d": "NIM containers deployable on any cloud, on-prem or hybrid.",
+  "r": "Governance follows wherever you run the container. There is no fixed NVIDIA-hosted region.",
+  "t": "Nemotron models exist mainly to prove out NVIDIA hardware and NeMo tooling, so it is not a frontier model competitor.",
+  "i": "OpenAI-compatible containers fit existing client code.",
+  "n": "When you want a managed model API with no infrastructure to operate."
+ },
+ "DeepSeek": {
+  "b": "Cost-sensitive workloads where frontier-comparable open weights under an MIT license are attractive.",
+  "d": "Hosted API endpoints, or full open weights for self-hosting.",
+  "r": "Self-hosting means no data is routed through DeepSeek's own infrastructure.",
+  "t": "The least third-party-verifiable safety posture in this set. Training costs are undisclosed and benchmark disclosures have been image-only.",
+  "i": "No managed retrieval or orchestration. Pairs with LangChain, LlamaIndex or your own agent loop.",
+  "n": "When governance review requires independently verifiable safety evidence, or the hosted API's data handling is unacceptable."
+ },
+ "xAI &middot; Grok": {
+  "b": "Applications that benefit from live X data and a roughly 1-million-token context window.",
+  "d": "xAI's Colossus infrastructure and X's developer APIs.",
+  "r": "Data resides on xAI and X infrastructure. There is no publicly documented sovereign or on-prem path.",
+  "t": "Governance is effectively X's own platform policy.",
+  "i": "Available through xAI and X developer APIs only, per the tool's current content.",
+  "n": "When you need sovereign, on-prem or regulated-industry residency."
+ },
+ "Perplexity": {
+  "b": "Search-grounded answers with per-claim source citations.",
+  "d": "Sonar API, priced per query, calling third-party models (Mistral, GPT, Claude) underneath.",
+  "r": "No enterprise residency story distinct from its API tiers. Web content and third-party model calls sit outside your own infrastructure.",
+  "t": "Differentiation is retrieval and citation, not a model of its own.",
+  "i": "Suits research and market-intelligence use cases. Thin on enterprise controls.",
+  "n": "When data must stay inside a private perimeter, or you need a controlled enterprise model."
+ },
+ "Databricks": {
+  "b": "Teams whose governed data already lives in a lakehouse and who want AI to run next to it.",
+  "d": "Mosaic AI Model Serving inside the lakehouse through an AI Gateway, tracked with MLflow.",
+  "r": "Governance runs through Unity Catalog, the same access control as every other Databricks workload.",
+  "t": "Mostly serves other vendors' models (DBRX, Llama). The value is the governed platform, not the model.",
+  "i": "Strong with Delta Lake and Unity Catalog data, Vector Search and Workflows.",
+  "n": "When your data is not on Databricks, or you want a lightweight model API without a lakehouse."
+ },
+ "Snowflake": {
+  "b": "Teams whose data sits in Snowflake and who want LLM functions called from SQL.",
+  "d": "Cortex AI runs inside Snowflake's security perimeter as SQL function calls (COMPLETE, SUMMARIZE).",
+  "r": "Data never leaves the governed environment. AI governance is identical to existing Snowflake data governance.",
+  "t": "The model layer is a menu reached from the warehouse. Snowflake trains no model of its own.",
+  "i": "Native to Snowflake roles, row-level filtering and column masking.",
+  "n": "When the workload is not warehouse-centred, or you need orchestration beyond SQL."
+ },
+ "IBM watsonx": {
+  "b": "Regulated customers who want governance wrapped around whichever model they choose.",
+  "d": "watsonx.ai managed serving, with watsonx Orchestrate as an agentic control plane.",
+  "r": "Framed as an enterprise control surface, but IBM is candid that it provides primitives. You still design your own governance architecture.",
+  "t": "IBM's own Granite models are secondary to the governance pitch.",
+  "i": "Orchestrate manages the whole agent estate regardless of where each agent runs.",
+  "n": "When you want a ready-made governance design rather than primitives to assemble."
+ },
+ "Cohere": {
+  "b": "Enterprise retrieval and generation accuracy on your own data.",
+  "d": "Command models, Model Vault single-tenant isolated serving, and on-prem or isolated-VPC options inside North.",
+  "r": "Sovereign deployment is a named product line, including a public-sector partnership with Carahsoft.",
+  "t": "Positions accuracy on your data over raw frontier benchmarks.",
+  "i": "Command, Model Vault and North Automations form an enterprise-scoped stack.",
+  "n": "When broad frontier capability is the priority."
+ },
+ "Salesforce &middot; Agentforce": {
+  "b": "CRM-centred agents that act on data already in a Salesforce org.",
+  "d": "Runs inside Salesforce-hosted infrastructure through the Atlas Reasoning Engine. There is no separate inference API.",
+  "r": "Inherits the customer's existing Salesforce access model, audit trails and compliance monitoring.",
+  "t": "Trains no model. Differentiation sits entirely above the model layer.",
+  "i": "Native to Salesforce data and workflows.",
+  "n": "When the use case does not centre on Salesforce data, or you need a data-engineering agent."
+ },
+ "ServiceNow": {
+  "b": "IT operations and service-management agents inside ServiceNow workflows.",
+  "d": "Now Assist with the AI Agent Orchestrator and AI Agent Fabric. Serving is invisible to the customer.",
+  "r": "AI Control Tower provides governance and inherits the residency commitments of your existing ServiceNow instance.",
+  "t": "Calls third-party or partner models. The real investment is in orchestration and governance.",
+  "i": "Native to ITSM workflows.",
+  "n": "When the use case sits outside IT service management."
+ },
+ "LlamaIndex": {
+  "b": "Retrieval-first pipelines over complex enterprise data.",
+  "d": "Open-source framework, with LlamaCloud as a managed parsing, indexing and retrieval service.",
+  "r": "No residency posture of its own. It is inherited from deployment and from your model and vector-store choices.",
+  "t": "Narrower retrieval focus than LangChain, and inference comes from your chosen provider.",
+  "i": "Sits on top of whichever model you plug in.",
+  "n": "When you need a general agent framework or a complete managed platform."
+ },
+ "Krutrim (Ola)": {
+  "b": "Indian enterprises that need Indic-language models and domestic compute.",
+  "d": "Models served through its AI-first sovereign cloud on Indian infrastructure.",
+  "r": "Core reason to exist: workloads and data stay on Indian infrastructure end to end.",
+  "t": "Compute residency is inseparable from the serving layer, so you adopt its cloud as well as its models.",
+  "i": "Like Sarvam, it leaves orchestration to your own stack. Trains its own LLMs, up to a 700-billion-parameter model built with Lenovo.",
+  "n": "When you need global-region flexibility or frontier English-first capability."
+ },
+ "GreyLabs AI": {
+  "b": "BFSI call-centre workflows such as collections and debt recovery.",
+  "d": "Serving built around live BFSI call workloads, integrated with a bank's existing telephony.",
+  "r": "Governance is built around Indian banking-sector compliance from the outset.",
+  "t": "No general-purpose foundation model. Customization is vertical by design.",
+  "i": "Deep integration with bank telephony rather than a general-purpose API.",
+  "n": "When you need a general-purpose model or a non-BFSI use case."
+ },
+ "CoRover.ai (BharatGPT)": {
+  "b": "Conversational and agentic use cases in Indian languages, including government and air-gapped needs.",
+  "d": "Cloud API plus an offline BharatGPT DeskAI Appliance (built on NVIDIA hardware) for no-internet serving.",
+  "r": "The offline appliance is the extreme case: no network connection at all.",
+  "t": "Positioned for conversational and agentic use rather than general-purpose benchmarks.",
+  "i": "Full-stack vertical. The appliance is a serving option no other vendor in this set offers.",
+  "n": "When you need benchmark-leading general reasoning or a standard cloud-only deployment."
+ },
+ "Fractal.ai": {
+  "b": "Narrow domain intelligence: healthcare (Vaidya), reasoning (Fathom) and agentic coding (PiEvolve).",
+  "d": "Each product is its own hosted service.",
+  "r": "Handled at the consulting-engagement level rather than through one fixed platform policy.",
+  "t": "A portfolio of narrow stacks, not one shared architecture.",
+  "i": "Selected by India's government to build the country's first Large Reasoning Model under the IndiaAI Mission.",
+  "n": "When you want one general-purpose platform with a uniform policy."
+ }
+};
+var SCORECARD_FIELDS = [['b','Best use case'],['d','Deployment model'],['r','Data residency'],['t','Main trade-off'],['i','Integration fit'],['n','When not to use it']];
+function scorecardHtml(l, vname){
+  if(l.id !== 'model') return '';
+  var s = SCORECARDS[vname];
+  if(!s) return '';
+  var rows = SCORECARD_FIELDS.map(function(f){
+    return '<dt>'+f[1]+'</dt><dd'+(f[0]==='n'?' class="avoid"':'')+'>'+s[f[0]]+'</dd>';
+  }).join('');
+  return '<details class="scorecard"><summary>Scorecard</summary><dl>'+rows+'</dl></details>';
+}
+function scorecardIntro(l){
+  if(l.id !== 'model') return '';
+  return '<p class="sc-intro">Each vendor has a six-field scorecard: best use case, deployment model, data residency, main trade-off, integration fit, and when not to use it. Built from this tool\'s vendor content as of October 2026. Confirm current terms with the vendor before any procurement decision.<button class="btn ghost" id="scToggle">Expand all scorecards</button></p>';
+}
+function wireScorecardToggle(){
+  var b = document.getElementById('scToggle');
+  if(!b) return;
+  b.addEventListener('click', function(){
+    var ds = document.querySelectorAll('details.scorecard');
+    var anyClosed = Array.prototype.some.call(ds, function(d){ return !d.open; });
+    ds.forEach(function(d){ d.open = anyClosed; });
+    b.textContent = anyClosed ? 'Collapse all scorecards' : 'Expand all scorecards';
+  });
+}
 var freshnessData = {};
 
 function stripHtml(s){
@@ -1362,11 +1614,12 @@ function renderBody(){
         var label = fresh.status === 'flagged' ? 'Review' : 'Verified';
         badge = '<span class="fresh-badge '+cls+'" title="'+escapeHtml(fresh.note||'')+'">'+label+' '+escapeHtml(fresh.lastChecked)+'</span>';
       }
-      return '<tr><td class="sn">'+(i+1)+'</td><td class="vname">'+v[0]+badge+'</td><td>'+v[1]+'</td></tr>';
+      return '<tr><td class="sn">'+(i+1)+'</td><td class="vname">'+v[0]+badge+'</td><td>'+v[1]+scorecardHtml(l, v[0])+'</td></tr>';
     }).join('');
     var colLabel = l.vendorColLabel || 'Vendor';
     var colDesc = l.vendorColDesc || 'How this layer is implemented';
-    body.innerHTML = '<table class="vtable"><thead><tr><th>#</th><th>'+colLabel+'</th><th>'+colDesc+'</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    body.innerHTML = scorecardIntro(l) + '<table class="vtable"><thead><tr><th>#</th><th>'+colLabel+'</th><th>'+colDesc+'</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    wireScorecardToggle();
   } else if(state.tab === 'flashcards'){
     renderFlashcards(body, l);
   } else if(state.tab === 'quiz'){
