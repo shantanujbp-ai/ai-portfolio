@@ -401,7 +401,7 @@
 <div class="wrap">
   <header class="top">
     <div>
-      <p class="eyebrow">Eight layers · 27 vendors · One reference build · One end-to-end view</p>
+      <p class="eyebrow">Nine layers · 27 AI vendors · 9 treasury and trade finance platforms · One reference build · One end-to-end view</p>
       <h1 class="title">AI Stack Fluency</h1>
       <p class="subtitle">Drill the architecture underneath the frontier labs (Claude, OpenAI, Gemini, Grok, DeepSeek, Llama), the hyperscalers and enterprise platforms (AWS, Azure, Databricks, Snowflake, Salesforce, ServiceNow, IBM), the frameworks (LangChain, LlamaIndex, Hugging Face) and the India-focused vendors (Sarvam, Gnani, Krutrim, GreyLabs, CoRover, Fractal) &mdash; then test the open-source reference pattern for building the whole thing yourself.</p>
       <p class="subtitle" style="margin-top:8px;font-style:italic;font-size:13.5px;">Goal: by the end, you can map any enterprise AI vendor pitch to the architectural layer it addresses, identify what it leaves unresolved, and assess whether the deployment model fits your regulatory context.</p>
@@ -432,7 +432,7 @@
     </section>
   </div>
 
-  <footer class="note">Content compiled from public vendor documentation and independent analysis as of September 2026 &mdash; verify against primary vendor sources before quoting in formal contexts. Progress is stored only in your browser.</footer>
+  <footer class="note">Content compiled from public vendor documentation and independent analysis as of September and October 2026 &mdash; verify against primary vendor sources before quoting in formal contexts. Progress is stored only in your browser.</footer>
 </div>
 
 <script>
@@ -1003,6 +1003,175 @@ var LAYERS = [
      opts:["The vertical vendor is missing the Alignment &amp; Safety band","Scope, not structure &mdash; both own all four bands, one is just narrower","The vertical vendor has an extra band the general vendor lacks","Nothing; they are the same pattern with different names"], a:1,
      ex:"Gnani.ai and GreyLabs AI are structurally identical to Anthropic's shape &mdash; four vendor-owned bands &mdash; just scoped entirely to one use case rather than general-purpose."}
   ]
+},
+{
+ "id": "tfplatform",
+ "n": "09",
+ "name": "Treasury and Trade Finance Platforms",
+ "tagline": "The systems of record that run treasury, markets, ALM, trade finance and payments, and where AI sits relative to them.",
+ "vendorColLabel": "Platform",
+ "vendorColDesc": "What it does, and how AI shows up",
+ "explainer": "Layers 01 to 08 cover AI vendors. This layer covers the other side: the systems of record that already run treasury, markets, asset-liability management, trade finance and payments. These platforms hold the transactions, the message connectivity and the regulatory logic, so the AI question changes from which model to use into where AI should sit relative to the system of record. There are three patterns. AI can be embedded inside the platform, as a vendor-supplied copilot or agent environment. It can be wrapped around the platform, as your own retrieval or agent layer calling its data and APIs. Or it can sit beside the platform for a narrow job such as message repair, document checking or fraud detection. When a platform vendor pitches AI, ask three things: can it act or only advise, who hosts the model and the data it sees, and does the vendor's own cloud choice constrain yours.",
+ "banking": "In treasury and trade finance the platform vendor usually owns the transaction record. That makes embedded, wrapped or beside a more important decision than which foundation model sits underneath.",
+ "vendors": [
+  [
+   "Murex (MX.3)",
+   "Cross-asset platform covering trading, treasury, risk, post-trade operations and investment management. Delivery ranges from on-premise and hybrid cloud to Murex SaaS, a dedicated single-tenant MX.3 instance managed by Murex, available on AWS and, since a September 2026 certification, on Google Cloud. Murex describes MX.3 as AI-enabled and AI-ready, with an Analyzer Assistant and agentic capabilities, and exposes MX.3 data and functions through APIs so clients can connect their own AI."
+  ],
+  [
+   "Nasdaq Calypso",
+   "Front-to-back capital markets and treasury platform covering treasury, risk, cash and collateral management and post-trade, part of Nasdaq since the 2023 Adenza acquisition and delivered on-premises or in the cloud. In late September 2026 Nasdaq launched an agentic AI operating environment inside Calypso: a contained, governed space to run and connect agents across the trade lifecycle, hosted by Nasdaq in Calypso's cloud environment, which is built on Amazon Bedrock. Nasdaq positions Calypso as the orchestration layer that connects agents from many sources to real workflows, data and controls."
+  ],
+  [
+   "Finastra",
+   "Vendor across lending, payments, treasury and capital markets, and universal banking. Kondor is its bank treasury system for high-volume treasury, complex derivatives and structured products, with real-time position management. Trade Innovation covers trade finance, where Finastra launched Assist.AI in 2025: a prompt-based assistant for trade-process questions, built on Microsoft Azure OpenAI Service. Finastra has also published guidance on Swift Category 7 changes to letter of credit and guarantee messaging."
+  ],
+  [
+   "Oracle Financial Services (OFSAA)",
+   "Analytical application suite for banks covering asset liability management, liquidity risk, funds transfer pricing, profitability, balance sheet planning, credit risk and expected credit loss, stress testing and regulatory reporting. Oracle states that its ALM, funds transfer pricing, balance sheet planning and profitability applications share data and control, and says it was named a category leader in Chartis Research's 2024 ALM market quadrant. This review did not verify Oracle-specific AI features, so treat its AI roadmap as an open question for the vendor."
+  ],
+  [
+   "Kyriba",
+   "Corporate treasury and liquidity platform, which makes it the client side of wholesale banking. Its Trusted Agentic AI (TAI) covers cash forecasting, FX risk, payments and working capital. Kyriba says TAI runs in a private, governed environment so customer data does not train public models, with role-based permissions, regional data residency, approvals and logging from prompts to tool calls. At KyribaLive 2026 it announced collaborations with Circle (USDC settlement) and J.P. Morgan Asset Management (money market investing), plus new liquidity planning and FX solutions."
+  ],
+  [
+   "Surecomp",
+   "Trade finance software for letters of credit, guarantees and supply-chain finance, connecting banks and corporates across document-heavy trade workflows. It offers trade finance as a service (TFaaS) and, according to a 2026 industry roundup, AI-powered text validation for bank guarantees and letters of credit. Public detail on the AI is thin, so ask for accuracy evidence."
+  ],
+  [
+   "Swift",
+   "The messaging network behind interbank payments and trade finance. Category 7 covers documentary credits and guarantees: MT700 issues a letter of credit, MT707 amends it, MT734 advises refusal, MT750 advises a discrepancy, and MT760 and MT767 carry and amend guarantees and standbys. Cross-border payments moved to ISO 20022 in November 2025, but the trade category messages were not part of that migration. Swift's AI work includes an open-source address structuring model and fraud experiments with 13 banks in which a shared privacy-preserving model detected fraud about twice as well as single-institution models on artificial transactions."
+  ],
+  [
+   "ACI Worldwide",
+   "Payments technology provider offering payments orchestration for banks, billers and merchants. Connetic is its cloud-native payments hub platform, which a major UK bank signed in late 2025. ACI's stated view is that deterministic payments infrastructure is strengthened, not replaced, by agentic AI, while workflow-based applications may be disrupted. Details of ACI's own AI products were not verified in this review."
+  ],
+  [
+   "Temenos",
+   "Core banking software vendor that also sells payments, lending, wealth and financial-crime products. In 2025 it launched Money Movement and Management, an AI-powered payments and accounts platform with automated payment repair, fraud detection and copilots. At its May 2026 forum it embedded AI agents and copilots across its core, digital and financial-crime products, including an FCM AI Agent for Instant Payments. Temenos says a Tier 1 bank using the FCM AI Agent processes hundreds of thousands of sanctions screening cases and automates more than twenty percent of alerts."
+  ]
+ ],
+ "flashcards": [
+  [
+   "Embedded, wrapped or beside",
+   "Three places AI can sit relative to a treasury or trade finance system of record: embedded inside the platform, wrapped around it through its data and APIs, or beside it for a narrow job such as message repair or fraud detection."
+  ],
+  [
+   "MT700 and MT707",
+   "Swift Category 7 messages for letters of credit: MT700 issues a documentary credit and MT707 amends it."
+  ],
+  [
+   "MT750 and MT734",
+   "MT750 is an advice of discrepancy and MT734 is an advice of refusal, both used when documents presented under a letter of credit do not comply."
+  ],
+  [
+   "MT760 and MT767",
+   "MT760 carries a guarantee or standby letter of credit and MT767 amends it."
+  ],
+  [
+   "ISO 20022 and trade messages",
+   "Cross-border payments moved to ISO 20022 in November 2025, but Category 7 trade messages were not part of that migration, so a bank runs both message worlds."
+  ],
+  [
+   "Murex SaaS",
+   "A dedicated single-tenant MX.3 instance managed by Murex, available on AWS and, since a September 2026 certification, on Google Cloud."
+  ],
+  [
+   "Nasdaq Calypso agentic environment",
+   "A contained, governed space inside Calypso to run and connect AI agents across the trade lifecycle, hosted by Nasdaq in a cloud environment built on Amazon Bedrock."
+  ],
+  [
+   "Kyriba TAI",
+   "Trusted Agentic AI for corporate treasury: runs in a private governed environment, with role-based permissions, regional residency, approvals and logging from prompts to tool calls."
+  ],
+  [
+   "Swift's address structuring model",
+   "An open-source AI model, free of charge, that helps turn free-text postal addresses into the structured town and country fields ISO 20022 payment messages require."
+  ],
+  [
+   "Finastra Assist.AI",
+   "A prompt-based assistant inside Trade Innovation for trade-process questions, built on Microsoft Azure OpenAI Service."
+  ]
+ ],
+ "scenarios": [
+  {
+   "q": "A bank wants AI agents to run in a contained, governed space inside its capital markets and treasury platform, across the trade lifecycle, hosted by the platform vendor. Which platform launched exactly this in late September 2026?",
+   "opts": [
+    "Murex MX.3",
+    "Nasdaq Calypso",
+    "Finastra Kondor",
+    "Oracle Financial Services"
+   ],
+   "a": 1,
+   "ex": "Nasdaq launched an agentic AI operating environment inside Calypso, hosted by Nasdaq in Calypso's cloud environment, which is built on Amazon Bedrock. Murex also describes agentic capabilities in MX.3, but the contained, vendor-hosted environment described here is Calypso's."
+  },
+  {
+   "q": "In a letter of credit workflow, which Swift message type carries an advice of discrepancy?",
+   "opts": [
+    "MT700",
+    "MT707",
+    "MT750",
+    "MT760"
+   ],
+   "a": 2,
+   "ex": "MT750 is the advice of discrepancy. MT700 issues the documentary credit, MT707 amends it, MT734 advises refusal, and MT760 carries a guarantee or standby letter of credit."
+  },
+  {
+   "q": "Which statement about Swift message formats is correct after November 2025?",
+   "opts": [
+    "All Swift traffic, including MT700, moved to ISO 20022",
+    "Cross-border payments moved to ISO 20022, but Category 7 trade messages were not part of that migration",
+    "MT103 remains the standard for cross-border payments",
+    "Trade messages moved to ISO 20022 before payments did"
+   ],
+   "a": 1,
+   "ex": "The coexistence period for cross-border payments ended on 22 November 2025, making ISO 20022 the standard for those payment instructions. Category 7 documentary credit and guarantee messages stayed in MT format, so a bank handles both. Confirm the current roadmap with Swift."
+  },
+  {
+   "q": "Which vendor delivers its platform as a dedicated single-tenant instance managed by the vendor, available on AWS and certified on Google Cloud since September 2026?",
+   "opts": [
+    "Murex",
+    "Kyriba",
+    "Surecomp",
+    "ACI Worldwide"
+   ],
+   "a": 0,
+   "ex": "Murex SaaS is a dedicated single-tenant MX.3 instance with managed services provided by Murex. It runs on AWS, and MX.3 was certified on Google Cloud in September 2026."
+  },
+  {
+   "q": "A corporate treasury team wants agents for cash forecasting, FX risk and payments, with logging from prompts to tool calls, approvals and regional data residency. Which vendor describes this?",
+   "opts": [
+    "Temenos",
+    "ACI Worldwide",
+    "Oracle Financial Services",
+    "Kyriba"
+   ],
+   "a": 3,
+   "ex": "Kyriba's Trusted Agentic AI is described as running in a private governed environment, with role-based permissions, regional residency, approvals and logging from prompts to tool calls. Kyriba is a corporate treasury platform, so it sits on the client side of wholesale banking."
+  },
+  {
+   "q": "What did Swift's fraud experiment with 13 banks show?",
+   "opts": [
+    "A single large bank's own model outperformed the shared model",
+    "A shared privacy-preserving model detected fraud about twice as well as single-institution models, in trials on artificial transactions",
+    "AI replaced Swift MT messages for payments",
+    "Fraud in production fell by half"
+   ],
+   "a": 1,
+   "ex": "In trials involving ten million artificial transactions, the collaborative model was about twice as effective at real-time fraud detection as models trained on a single institution's data. These were experiments, not production results."
+  },
+  {
+   "q": "Which vendor reports that a Tier 1 bank using its embedded AI agent now automates more than twenty percent of sanctions screening alerts?",
+   "opts": [
+    "Temenos",
+    "Finastra",
+    "ACI Worldwide",
+    "Murex"
+   ],
+   "a": 0,
+   "ex": "Temenos says a Tier 1 bank using its FCM AI Agent processes hundreds of thousands of sanctions screening cases and automates more than twenty percent of alerts. It is the vendor's own claim."
+  }
+ ]
 }
 ];
 
@@ -1254,18 +1423,101 @@ var SCORECARDS = {
  }
 };
 var SCORECARD_FIELDS = [['b','Best use case'],['d','Deployment model'],['r','Data residency'],['t','Main trade-off'],['i','Integration fit'],['n','When not to use it']];
-function scorecardHtml(l, vname){
-  if(l.id !== 'model') return '';
-  var s = SCORECARDS[vname];
-  if(!s) return '';
-  var rows = SCORECARD_FIELDS.map(function(f){
+var TF_SCORECARDS = {
+ "Murex (MX.3)": {
+  "b": "Front-to-back trading, treasury and risk on one cross-asset platform.",
+  "d": "On-premise, hybrid cloud, or Murex SaaS (dedicated single-tenant, managed by Murex) on AWS or Google Cloud.",
+  "r": "An Analyzer Assistant and agentic capabilities in MX.3. Murex describes the platform as AI-ready and exposes data and functions for connecting your own AI.",
+  "t": "A large central platform, so your AI options follow its release path and your chosen delivery model. Check which AI features your version actually includes.",
+  "i": "APIs for integration. In the SaaS model it connects to market data, static data, execution venues and affirmation platforms.",
+  "n": "When you need only a narrow point solution, or a lightweight corporate treasury tool."
+ },
+ "Nasdaq Calypso": {
+  "b": "Capital markets and treasury workflows, especially collateral and risk, where you want AI agents contained inside the platform.",
+  "d": "On-premises or cloud. The agentic environment is hosted by Nasdaq in Calypso's cloud environment.",
+  "r": "A governed agentic environment inside Calypso for running and connecting agents across the trade lifecycle, built on Amazon Bedrock.",
+  "t": "The agent environment is hosted by Nasdaq, so agent and data governance depends on that hosted setup. It launched only in late September 2026.",
+  "i": "Positioned as the orchestration layer connecting agents from many sources to Calypso workflows, data and controls.",
+  "n": "When agents must run on your own infrastructure, or you do not run Calypso."
+ },
+ "Finastra": {
+  "b": "Banks that want treasury (Kondor), trade finance (Trade Innovation) and payments from one vendor family.",
+  "d": "Not verified in this review. Ask Finastra which products run as SaaS and which on-premise.",
+  "r": "Assist.AI inside Trade Innovation: a prompt-based assistant for trade-process questions, built on Microsoft Azure OpenAI Service.",
+  "t": "Assist.AI relies on Azure OpenAI, so model and data handling follow Microsoft's service.",
+  "i": "Assist.AI sits inside Trade Innovation. Finastra has published guidance on Swift Category 7 changes.",
+  "n": "When you need AI that executes transactions. Assist.AI is described as answering process questions."
+ },
+ "Oracle Financial Services (OFSAA)": {
+  "b": "ALM, funds transfer pricing, liquidity risk and profitability on one shared data and control model.",
+  "d": "Oracle offers cloud services for profitability and balance sheet management. Other deployment options were not verified.",
+  "r": "Not verified in this review. Ask Oracle which AI features ship in its ALM and funds transfer pricing applications today.",
+  "t": "A suite model: value depends on adopting the shared OFSAA data foundation, which is a data programme in itself.",
+  "i": "ALM analytics include IRRBB reporting, and Oracle documentation shows integration with third-party structured cash-flow models.",
+  "n": "When you need a small ALM tool, or have no Oracle data and analytics footprint."
+ },
+ "Kyriba": {
+  "b": "Corporate treasury: cash forecasting, FX risk, payments and working capital for a bank's corporate clients.",
+  "d": "Cloud treasury platform. A 2026 industry roundup cites more than 9,900 bank connections.",
+  "r": "Trusted Agentic AI (TAI): private governed environment, role-based permissions, regional residency, approvals, and logging from prompts to tool calls.",
+  "t": "Digital-asset and investing features (USDC settlement, money market funds) widen what an agent can influence, so approval and policy configuration matter.",
+  "i": "Unifies bank, ERP and treasury data. 2026 collaborations with Circle and J.P. Morgan Asset Management.",
+  "n": "When you are a bank needing a markets or ALM system. Kyriba is built for corporate treasuries."
+ },
+ "Surecomp": {
+  "b": "Letter of credit and guarantee processing with AI-assisted text validation.",
+  "d": "Trade finance as a service (TFaaS), cloud-based.",
+  "r": "AI-powered text validation for bank guarantees and letters of credit, per a 2026 industry roundup.",
+  "t": "Public detail on its AI is thin in this review. Ask for accuracy and false-positive evidence.",
+  "i": "Connects banks and corporates across document-heavy trade workflows.",
+  "n": "When you want a general AI assistant across many systems rather than a trade finance system of record."
+ },
+ "Swift": {
+  "b": "Reliable interbank messaging for payments and trade: MT700, MT707, MT734, MT750, MT760 and MT767.",
+  "d": "A network and set of standards, not an application. You connect through your own or a partner interface.",
+  "r": "An open-source AI address structuring model, and federated-learning fraud experiments with 13 banks.",
+  "t": "The fraud results come from trials on artificial transactions, so they are demonstrations, not production outcomes.",
+  "i": "Cross-border payments moved to ISO 20022 in November 2025 while Category 7 trade messages did not, so a bank runs both message worlds.",
+  "n": "When you want a workflow tool. Swift standardises messages and does not run your letter of credit lifecycle."
+ },
+ "ACI Worldwide": {
+  "b": "Payments hubs and orchestration for banks, billers and merchants.",
+  "d": "Connetic is a cloud-native payments hub platform. Other deployment options were not verified.",
+  "r": "Stated view: deterministic payments infrastructure enforces trust while agentic AI works alongside it. Details of ACI's own AI products were not verified.",
+  "t": "Public AI detail is thin compared with peers in this review.",
+  "i": "Positions its payments platform inside AI ecosystems and digital wallets.",
+  "n": "When you need embedded AI features today more than a deterministic payments engine."
+ },
+ "Temenos": {
+  "b": "Banks wanting core, payments and financial-crime controls from one vendor, with embedded AI.",
+  "d": "Temenos SaaS, with an expansion on AWS announced in 2026.",
+  "r": "FCM AI Agent for sanctions alerts and instant payments, copilots for core and payments, AI-powered payment repair, and Conversational Studio.",
+  "t": "The Tier 1 result (over twenty percent of alerts automated) is the vendor's own claim.",
+  "i": "Embedded across Temenos core, digital and financial-crime products. A payments copilot was still in progress.",
+  "n": "When your estate is not Temenos. The agents are embedded in its own products, not offered as a layer over other systems."
+ }
+};
+var TF_FIELDS = [['b','Best use case'],['d','Deployment model'],['r','Where AI shows up'],['t','Main trade-off'],['i','Integration fit'],['n','When not to use it']];
+function scRows(s, fields){
+  return fields.map(function(f){
     return '<dt>'+f[1]+'</dt><dd'+(f[0]==='n'?' class="avoid"':'')+'>'+s[f[0]]+'</dd>';
   }).join('');
-  return '<details class="scorecard"><summary>Scorecard</summary><dl>'+rows+'</dl></details>';
+}
+function scorecardHtml(l, vname){
+  var s = null, fields = null;
+  if(l.id === 'model'){ s = SCORECARDS[vname]; fields = SCORECARD_FIELDS; }
+  else if(l.id === 'tfplatform'){ s = TF_SCORECARDS[vname]; fields = TF_FIELDS; }
+  if(!s) return '';
+  return '<details class="scorecard"><summary>Scorecard</summary><dl>'+scRows(s, fields)+'</dl></details>';
 }
 function scorecardIntro(l){
-  if(l.id !== 'model') return '';
-  return '<p class="sc-intro">Each vendor has a six-field scorecard: best use case, deployment model, data residency, main trade-off, integration fit, and when not to use it. Built from this tool\'s vendor content as of October 2026. Confirm current terms with the vendor before any procurement decision.<button class="btn ghost" id="scToggle">Expand all scorecards</button></p>';
+  if(l.id === 'model'){
+    return '<p class="sc-intro">Each vendor has a six-field scorecard: best use case, deployment model, data residency, main trade-off, integration fit, and when not to use it. Built from this tool\'s vendor content as of October 2026. Confirm current terms with the vendor before any procurement decision.<button class="btn ghost" id="scToggle">Expand all scorecards</button></p>';
+  }
+  if(l.id === 'tfplatform'){
+    return '<p class="sc-intro">Each platform has a six-field scorecard: best use case, deployment model, where AI shows up, main trade-off, integration fit, and when not to use it. Built in October 2026 from vendor announcements, vendor documentation and industry press, not from vendor-verified product reviews. Where a fact could not be sourced, the scorecard says so. AI features in this area change quickly, so confirm with the vendor.<button class="btn ghost" id="scToggle">Expand all scorecards</button></p>';
+  }
+  return '';
 }
 function wireScorecardToggle(){
   var b = document.getElementById('scToggle');
@@ -1355,17 +1607,17 @@ var DEEP_SCENARIOS = [
  },
  {
   "id": "ds3",
-  "title": "Australian Insurer: Claims Triage With In-Country Data",
-  "context": "An Australian general insurer wants first-pass claims triage: read claim documents and photos, classify the claim type, and flag anomalies for human review. Customer data must not leave Australia. The insurer already runs its data platform on Google Cloud in an Australian region. The team has Python engineers but no ML researchers and no GPU operations staff.",
-  "question": "Which option best meets the in-country constraint while handling documents and images?",
+  "title": "Wholesale Bank: Reading LC, Guarantee and Shipping Documents In-Country",
+  "context": "A bank's trade operations team wants first-pass intake of letters of credit, guarantees and shipping documents: read scanned and photographed pages, extract key terms, classify the instrument, and flag likely discrepancies for a human examiner, who still decides. Customer and counterparty data must not leave the country. The bank already runs its data platform on Google Cloud in an in-country region, and the team has Python engineers but no ML researchers and no GPU operations staff.",
+  "question": "Which option best meets the in-country constraint while handling scanned documents and images?",
   "opts": [
    "Send documents to the OpenAI API directly, after an anonymisation step",
-   "Self-host Meta Llama on infrastructure in Australia",
-   "AWS Bedrock in an Australian Region, adding AWS alongside the existing Google Cloud estate",
-   "Gemini on Vertex AI, run in the Australian Google Cloud project and region the insurer already uses"
+   "Self-host Meta Llama on in-country infrastructure",
+   "AWS Bedrock in an in-country Region, adding AWS alongside the existing Google Cloud estate",
+   "Gemini on Vertex AI, run in the in-country Google Cloud project and region the bank already uses"
   ],
   "a": 3,
-  "ex": "Gemini is natively multimodal across text, image, audio and video, and the tool notes it runs inside the customer's existing Google Cloud and Vertex project and region, so residency inherits the region already in use. Confirm the specific model is offered in that region before committing. Nothing here needs a new cloud contract or GPU operations.",
+  "ex": "Gemini is natively multimodal across text, image, audio and video, and the tool notes it runs inside the customer's existing Google Cloud and Vertex project and region, so residency inherits the region already in use. Confirm the specific model is offered in that region before committing. Nothing here needs a new cloud contract or GPU operations. The examiner still makes the discrepancy decision: no vendor in the tool is described as making that call.",
   "losses": [
    "OpenAI's direct API sends customer data to OpenAI's service. The tool notes that regional residency for OpenAI is usually delivered through regional Azure OpenAI deployments, and anonymisation does not change where the data goes.",
    "Self-hosted Llama gives the strongest residency posture, but Meta offers no first-party managed serving, so the insurer would own serving, latency and cost with no ML operations staff.",
@@ -1455,8 +1707,8 @@ var DEEP_SCENARIOS = [
  },
  {
   "id": "ds7",
-  "title": "Data Engineering Team: A Self-Correcting Lakehouse Agent",
-  "context": "A data engineering team wants an agent that watches their Databricks lakehouse for data-quality anomalies, runs corrective transformations, and remembers the outcome of past fixes so later decisions improve. The data, the access controls and the pipelines all already live in Databricks.",
+  "title": "ALM Team: A Self-Correcting Balance-Sheet Data Agent",
+  "context": "An ALM team's balance-sheet and cash-flow data sits in a Databricks lakehouse. They want an agent that watches the feeds behind their interest-rate and liquidity runs for data-quality breaks such as missing cash flows or stale rate curves, runs corrective transformations, re-triggers the affected scenario runs, and remembers the outcome of past fixes so later decisions improve. The data, the access controls and the pipelines all already live in Databricks.",
   "question": "Which pattern closes this observe, act and learn loop with the least crossing between platforms?",
   "opts": [
    "Databricks Mosaic AI Agent Framework: observe through Vector Search, reason with a foundation model, act through Databricks Workflows, learn by persisting memories to Delta Lake",
@@ -1465,7 +1717,7 @@ var DEEP_SCENARIOS = [
    "A LangChain agent loop with an external vector store for memory and hand-written Databricks connectors"
   ],
   "a": 0,
-  "ex": "The tool describes the Mosaic AI Agent Framework as an explicit four-stage loop: observe through Vector Search, reason through a foundation model, act through Databricks Workflows, and learn by persisting memories back to Delta Lake. The loop closes into the same lakehouse the data came from, with access staying under Unity Catalog all the way round. Logging the agent's rationale before it acts is still something the team has to implement.",
+  "ex": "The tool describes the Mosaic AI Agent Framework as an explicit four-stage loop: observe through Vector Search, reason through a foundation model, act through Databricks Workflows, and learn by persisting memories back to Delta Lake. Re-triggering a scenario run is one more action through Workflows. The loop closes into the same lakehouse the data came from, with access staying under Unity Catalog all the way round. Logging the agent's rationale before it acts is still something the team has to implement.",
   "losses": [
    "Bedrock AgentCore offers managed memory, identity and observability, so it is a capable runtime. But the data and the actions live in Databricks, so every step crosses a platform boundary and the Unity Catalog perimeter.",
    "Agentforce grounds agents in the Salesforce data model, so it is built for CRM work, not lakehouse data engineering.",
@@ -1477,18 +1729,316 @@ var DEEP_SCENARIOS = [
    "Salesforce &middot; Agentforce",
    "LangChain (open frameworks)"
   ]
+ },
+ {
+  "id": "ds8",
+  "title": "European Insurer: A Vendor Domiciled in the EU",
+  "context": "A European insurer's legal team cares about which jurisdiction the AI vendor itself sits in, not only where its data is stored. The insurer wants to start on a managed API, keep the option to move the same models onto its own air-gapped hardware later, and customize models on its proprietary data.",
+  "question": "Which vendor fits this combination best?",
+  "opts": [
+   "Anthropic Claude, through a hyperscaler route in an EU Region",
+   "Mistral AI",
+   "OpenAI, through a regional Azure OpenAI deployment",
+   "Self-hosted Meta Llama from the start"
+  ],
+  "a": 1,
+  "ex": "The tool's pitch for Mistral is domicile, not just data location. A Paris headquarters puts it inside GDPR jurisdiction with no EU-representative intermediary chain, and the company argues it sits outside the reach of the US CLOUD Act. Its La Plateforme API runs under EU data-processing agreements on capacity Mistral is building near Paris, the same weights can later run air-gapped on customer hardware, and Studio and Forge support training on proprietary data. Two cautions: the CLOUD Act point is the company's own argument, so have counsel assess it, and the open-weight models carry a research license, so production use needs a separate commercial license.",
+  "losses": [
+   "Claude's regional residency and VPC boundaries are inherited from the hyperscaler route, which settles where data sits but not the vendor's own jurisdiction. There are also no open weights to move onto air-gapped hardware later.",
+   "OpenAI's residency in practice comes through regional Azure OpenAI deployments. That answers location, not domicile, and the weights are closed.",
+   "Self-hosted Llama gives the strongest residency posture, but Meta offers no first-party managed serving, so the insurer could not start on a managed API as required."
+  ],
+  "refs": [
+   "Mistral AI",
+   "Anthropic &middot; Claude",
+   "OpenAI",
+   "Meta &middot; Llama"
+  ]
+ },
+ {
+  "id": "ds9",
+  "title": "ALM Analysts: Plain-English Questions on Balance-Sheet Tables",
+  "context": "ALM analysts work in SQL against governed balance-sheet and cash-flow tables in Snowflake. They want to summarize free-text committee notes and ask plain-English questions of the structured tables, without moving data out of the warehouse or standing up a model endpoint. The existing role-based access, row-level filters and column masking must apply to AI outputs as well.",
+  "question": "Which approach fits with the least data movement?",
+  "opts": [
+   "AWS Bedrock, with the tables exported to S3 and queried through Knowledge Bases",
+   "Databricks Mosaic AI Model Serving, with the tables replicated into the lakehouse",
+   "Cohere Model Vault as a dedicated single-tenant endpoint called from SQL tooling",
+   "Snowflake Cortex AI: LLM functions such as COMPLETE and SUMMARIZE called from SQL, plus Cortex Analyst for plain-English questions"
+  ],
+  "a": 3,
+  "ex": "Cortex AI runs inside Snowflake's own security perimeter, with LLM calls made as SQL function calls at query time, so there is no separate inference endpoint to provision. Cortex Analyst translates a plain-English question into SQL against governed tables. And AI operations inherit Snowflake's native security model, so role-based access, row-level filtering and column masking apply to AI function outputs exactly as they do to any ordinary query.",
+  "losses": [
+   "Bedrock keeps calls inside the chosen AWS Region and is a strong governed gateway, but here the data would have to leave Snowflake, creating a second copy and a second set of access rules.",
+   "Databricks serves foundation models inside its own lakehouse, which is a different platform from where this data lives.",
+   "Cohere's Model Vault gives fully isolated single-tenant serving. That is strong isolation, but it is also a separate endpoint to provision and send data to, which the scenario asked to avoid."
+  ],
+  "refs": [
+   "Snowflake",
+   "AWS &middot; Bedrock",
+   "Databricks",
+   "Cohere"
+  ]
+ },
+ {
+  "id": "ds10",
+  "title": "Strategy Team: Live Market Research With Citations",
+  "context": "A strategy team needs fast answers about public companies and markets, drawn from the live web, with every claim traceable to a source. They prefer a cost model that scales per query. No confidential data will be sent.",
+  "question": "Which vendor's described product is built for this?",
+  "opts": [
+   "AWS Bedrock Knowledge Bases over the firm's own document stores",
+   "Cohere Embed and Rerank inside North, over the firm's own data",
+   "Perplexity, using Sonar",
+   "DeepSeek's hosted API"
+  ],
+  "a": 2,
+  "ex": "In the tool's description, retrieval is Perplexity's product: live web crawling plus a citation system that attributes every claim to a source. Sonar answers in 200 to 500 milliseconds by combining real-time crawling with calls to third-party models, and is priced per query rather than per token. The caveat is the tool's own: Perplexity has no enterprise residency story distinct from its API tiers, so it fits here only because the scenario sends no confidential data.",
+  "losses": [
+   "Bedrock Knowledge Bases retrieves from the sources you connect (S3, Confluence, SharePoint, Salesforce) with citations. It does not search the live web.",
+   "Cohere's retrieval specialization applies to your own data inside North, not to the open web.",
+   "DeepSeek has no managed retrieval product, so you would assemble web search and citation handling yourself."
+  ],
+  "refs": [
+   "Perplexity",
+   "AWS &middot; Bedrock",
+   "Cohere",
+   "DeepSeek"
+  ]
+ },
+ {
+  "id": "ds11",
+  "title": "National Agency: Isolated, Sovereign Retrieval",
+  "context": "A national agency wants assistants grounded in its own documents. Requirements: fully isolated single-tenant serving, an on-prem or isolated-VPC option, a vendor with a named sovereign delivery path for public-sector customers, and retrieval quality prioritised over frontier benchmark scores.",
+  "question": "Which vendor's described offering matches best?",
+  "opts": [
+   "Cohere",
+   "xAI Grok",
+   "Perplexity",
+   "OpenAI"
+  ],
+  "a": 0,
+  "ex": "The tool describes retrieval quality as Cohere's original specialization (Embed and Rerank), Model Vault as fully isolated single-tenant serving, on-prem and isolated-VPC options inside North, and sovereign deployment as a named product line, including a public-sector partnership with Carahsoft. In the tool's framing, deployment choice is Cohere's guardrail: more infrastructure control than content filtering.",
+  "losses": [
+   "Grok's data resides on xAI and X infrastructure, with no publicly documented sovereign or on-prem deployment path.",
+   "Perplexity has no enterprise residency story distinct from its API tiers, and its answers depend on web content and third-party model calls outside your infrastructure.",
+   "OpenAI's regional residency is usually delivered through regional Azure OpenAI deployments. The tool does not describe a named single-tenant sovereign offering for public-sector customers."
+  ],
+  "refs": [
+   "Cohere",
+   "xAI &middot; Grok",
+   "Perplexity",
+   "OpenAI"
+  ]
+ },
+ {
+  "id": "ds12",
+  "title": "Bank With Its Own GPUs: One Serving Layer for Many Models",
+  "context": "A bank owns a GPU estate on-prem and wants to serve several different models behind OpenAI-compatible endpoints, so existing client code keeps working as the models change over time. No data may leave the bank's own environment.",
+  "question": "Which option fits?",
+  "opts": [
+   "Hugging Face Inference Providers, as a gateway to hosted models",
+   "Azure AI Foundry as the model catalog and serving surface",
+   "AWS Bedrock, with models called over private VPC endpoints",
+   "NVIDIA NIM containers on the bank's own GPU estate"
+  ],
+  "a": 3,
+  "ex": "NIM packages any model into an optimized, OpenAI-compatible container for production serving, deployable across any cloud, on-prem or hybrid environment. Governance follows wherever the bank chooses to run the container, with no fixed NVIDIA-hosted region. Any model, OpenAI-compatible, on the bank's own GPUs: that is the combination the scenario describes.",
+  "losses": [
+   "Hugging Face Inference Providers is an OpenAI-compatible gateway that routes to 15+ third-party providers, so requests leave the bank's environment.",
+   "Azure AI Foundry is a unified catalog and serving surface inside Azure, so models run in Microsoft's cloud, not on the bank's GPUs.",
+   "Bedrock keeps calls inside a chosen AWS Region over private VPC endpoints. That is strong, but it still runs in AWS, not on-prem."
+  ],
+  "refs": [
+   "NVIDIA",
+   "Hugging Face",
+   "Microsoft &middot; Azure AI",
+   "AWS &middot; Bedrock"
+  ]
+ },
+ {
+  "id": "ds13",
+  "title": "Buy-Side Research Team: Agents Connected to Financial Data Providers",
+  "context": "A buy-side research team wants agents for financial modeling, equity research and credit analysis that pull directly from institutional data providers such as LSEG, S&P Capital IQ, FactSet and Moody's. They want an open standard for those connections rather than bespoke integrations. The firm's cloud contracts are on AWS, and it needs audit logging and contractual zero data retention.",
+  "question": "Which vendor's described offering is closest to this?",
+  "opts": [
+   "Google Gemini Enterprise, using its pre-built connectors",
+   "Cohere North, grounding agents in the firm's own documents",
+   "Anthropic Claude, with Claude for Financial Services connectors built on MCP, reached through AWS Bedrock",
+   "Perplexity, using live web search with citations"
+  ],
+  "a": 2,
+  "ex": "In the tool's description, Anthropic defines the Model Context Protocol, an open standard for exposing tools and data to a model, and Claude for Financial Services packages it as pre-built connectors to institutional data providers (LSEG, S&P Capital IQ, PitchBook, Moody's, FactSet, Morningstar and others) plus named agents for financial modeling, equity research and credit risk. Claude Enterprise adds SSO, SCIM, audit logging and contractual zero data retention, and regional residency and VPC boundaries come from the hyperscaler route, here AWS Bedrock.",
+  "losses": [
+   "Gemini Enterprise's pre-built connectors in the tool cover work systems such as Drive, SharePoint, Salesforce, ServiceNow, Confluence and Jira, not institutional financial data providers.",
+   "Cohere North grounds in your own data with strong retrieval, but the tool describes no connector set for financial data providers.",
+   "Perplexity searches the live web with citations but, per the tool, has no enterprise residency story, and the live web is not the same as the provider feeds the team named."
+  ],
+  "refs": [
+   "Anthropic &middot; Claude",
+   "Google &middot; Gemini",
+   "Cohere",
+   "Perplexity"
+  ]
+ },
+ {
+  "id": "ds14",
+  "title": "ALCO Secretariat: A Year of Papers in One Pass",
+  "context": "An ALCO secretariat wants to analyse a year of committee papers, minutes and regulator circulars together, to see how decisions and policy limits evolved, without building and operating a retrieval pipeline. The documents are internal and must stay on the bank's own infrastructure.",
+  "question": "Which option fits best?",
+  "opts": [
+   "xAI Grok through its API, using its roughly 1-million-token context window",
+   "AWS Bedrock Knowledge Bases, chunking and embedding the documents into a vector store",
+   "Perplexity Sonar, searching the documents with citations",
+   "Self-hosted Meta Llama 4 Scout, using its 10-million-token context window"
+  ],
+  "a": 3,
+  "ex": "The tool describes Scout's 10-million-token context window as explicitly positioned to reduce reliance on RAG pipelines for many document workflows, and Llama can be self-hosted so no data leaves the bank. Two cautions apply. Long context does not replace source citations, and answer quality over very long inputs should be tested on your own documents. Llama also has no first-party managed serving, so the bank still has to choose a serving route.",
+  "losses": [
+   "Grok offers a roughly 1-million-token window, but data resides on xAI and X infrastructure with no publicly documented sovereign or on-prem deployment path, which conflicts with the own-infrastructure requirement.",
+   "Bedrock Knowledge Bases is a managed pipeline, but it is still a chunk, embed and store pipeline to configure and operate, and the documents move into AWS services. The scenario asked to avoid building retrieval.",
+   "Perplexity's product is live web retrieval with citations, and it has no enterprise residency story, so it does not suit internal documents."
+  ],
+  "refs": [
+   "Meta &middot; Llama",
+   "xAI &middot; Grok",
+   "AWS &middot; Bedrock",
+   "Perplexity"
+  ]
+ },
+ {
+  "id": "ds15",
+  "title": "Model Validation: Auditing a Structuring Assistant's Reasoning",
+  "context": "A trading desk uses an assistant for structuring analysis, and the model validation team must be able to review how the model reasoned when something looks wrong. They also want multi-step analyses to carry their reasoning forward across requests, without the raw reasoning trace being stored server-side.",
+  "question": "Which vendor's described features match both needs?",
+  "opts": [
+   "OpenAI, with reasoning summaries and encrypted reasoning items",
+   "Cohere, with Model Vault single-tenant serving",
+   "DeepSeek, self-hosted open weights",
+   "Perplexity, with per-claim citations"
+  ],
+  "a": 0,
+  "ex": "The tool describes OpenAI's reasoning summaries as giving auditability into a model's chain of thought for debugging, and encrypted reasoning items as letting that reasoning be reused across requests without the raw trace being stored server-side. A reasoning summary is a view for review, so validation teams should still keep their own input and output logs.",
+  "losses": [
+   "Cohere's Model Vault is about isolated single-tenant serving. That addresses where the model runs, not visibility into how it reasoned.",
+   "Self-hosting DeepSeek gives full control of the data, but the tool describes no reasoning-audit feature, and its safety posture is the least third-party-verifiable in the set.",
+   "Perplexity's citations show where an answer's claims came from, not how a model reasoned."
+  ],
+  "refs": [
+   "OpenAI",
+   "Cohere",
+   "DeepSeek",
+   "Perplexity"
+  ]
+ },
+ {
+  "id": "ds16",
+  "title": "Corporate Payments Desk: Verifying the Caller on High-Value Instructions",
+  "context": "A bank's payments team takes phone calls from corporate clients confirming high-value payment instructions. It needs to verify the caller by voice during the live call and resist spoofed or synthetic voices. The audio is 8kHz telephony quality, recordings must stay on the bank's own infrastructure, and the team wants a managed product rather than building one.",
+  "question": "Which vendor's described capabilities cover this?",
+  "opts": [
+   "Azure AI Foundry with Copilot Studio, building a custom verification flow",
+   "Gnani.ai",
+   "Sarvam AI as the speech and language model, with the bank building the verification",
+   "Cohere North with Model Vault isolation"
+  ],
+  "a": 1,
+  "ex": "The tool describes Gnani.ai's core guardrail as biometric, not content-based: it extracts 300+ voice features per call to build a voiceprint for anti-spoofing and caller authentication, verified sub-second during the live call. Its models are trained on call-center audio including 8kHz telephony, and its deployment is on-prem-ready for BFSI workflows where recordings cannot leave the bank. The tool does not describe voice biometrics as sufficient on its own, so treat it as one control among several.",
+  "losses": [
+   "Azure with Copilot Studio is a general agent-building route grounded in Microsoft data. The tool describes no voice biometrics for it, so the bank would assemble verification itself.",
+   "Sarvam is positioned as a model and language layer that your own stack calls into, so verification would be the bank's build.",
+   "Cohere's Model Vault isolates serving, but the tool describes no voice or biometric capability."
+  ],
+  "refs": [
+   "Gnani.ai",
+   "Microsoft &middot; Azure AI",
+   "Sarvam AI",
+   "Cohere"
+  ]
+ },
+ {
+  "id": "ds17",
+  "title": "Payments Operations: Failed Batch and Incident Triage",
+  "context": "A bank's payments operations team already manages incidents, change requests and service requests in its IT service-management platform. Failed payment batches and gateway alerts land there as tickets. The team wants agents that triage these tickets and coordinate fixes inside that same workflow, with governance and data residency inherited from the existing instance, and without standing up a separate AI platform.",
+  "question": "Which option fits best?",
+  "opts": [
+   "Salesforce Agentforce, grounding agents in the Salesforce data model",
+   "A LangChain agent loop with custom ticket connectors and its own audit logging",
+   "Databricks Mosaic AI Agent Framework, with the tickets copied into the lakehouse",
+   "ServiceNow, using Now Assist and its AI Agent Orchestrator inside the existing instance"
+  ],
+  "a": 3,
+  "ex": "ServiceNow's agents run inside the platform where the tickets already live. Now Assist and the AI Agent Orchestrator and AI Agent Fabric coordinate calls to whichever underlying models power each agent, serving is invisible to the customer, and the AI Control Tower gives central visibility into every agent's compliance status while inheriting the data-residency commitments of the existing instance. If an agent must act on core payments systems, those integrations still have to be built and governed separately.",
+  "losses": [
+   "Agentforce grounds agents in Salesforce's own CRM data, not in IT service-management tickets.",
+   "LangChain has no governance posture of its own, so the connectors and the audit logging would be your build.",
+   "Databricks closes its agent loop around lakehouse data. Copying tickets there adds a platform that is not where the workflow lives."
+  ],
+  "refs": [
+   "ServiceNow",
+   "Salesforce &middot; Agentforce",
+   "LangChain (open frameworks)",
+   "Databricks"
+  ]
+ },
+ {
+  "id": "ds18",
+  "title": "Wholesale Banking: Client Meeting Preparation From CRM Data",
+  "context": "Relationship managers in wholesale banking want an assistant that prepares for client meetings from the bank's CRM: recent interactions, open opportunities, product and facility holdings, and call notes. The data already lives in the bank's Salesforce org, and the team wants agents that run where that data lives, with the existing access model, audit trail and compliance monitoring applied.",
+  "question": "Which option fits best?",
+  "opts": [
+   "Salesforce Agentforce, with the Atlas Reasoning Engine and the Einstein Trust Layer",
+   "AWS Bedrock Knowledge Bases over exports of the CRM data in S3",
+   "Perplexity Sonar, searching the web for client news",
+   "Cohere North over copies of the CRM records"
+  ],
+  "a": 0,
+  "ex": "The tool describes Agentforce as grounding agents directly in Salesforce's own CRM data and external systems through MuleSoft, so retrieval means querying the existing data model rather than a separate document index. Governance rides on the existing role-based access, audit trails and compliance monitoring, and the Einstein Trust Layer adds guardrails, zero data retention, toxicity detection and dynamic grounding. It would be a weaker fit if the meeting preparation depended mainly on documents held outside Salesforce.",
+  "losses": [
+   "Bedrock Knowledge Bases can ingest from Salesforce and S3 and is a workable route, but an exported copy creates a second data set with its own access rules.",
+   "Perplexity searches the live web and has no enterprise residency story. Client news is only part of the need.",
+   "Cohere's retrieval strength is real, but copying CRM records into North duplicates the data and the access rules."
+  ],
+  "refs": [
+   "Salesforce &middot; Agentforce",
+   "AWS &middot; Bedrock",
+   "Perplexity",
+   "Cohere"
+  ]
+ },
+ {
+  "id": "ds19",
+  "title": "Payments Data Quality: Structured Addresses for ISO 20022",
+  "context": "A bank's cross-border payments flow needs postal addresses in structured form, with town and country fields, for ISO 20022 messages. The source systems, including client ERP exports, hold free-text addresses. The team wants an AI-assisted way to structure the addresses without building and training a model, and without buying another platform.",
+  "question": "Which approach matches what the vendors describe?",
+  "opts": [
+   "Kyriba's Trusted Agentic AI, configured for payments",
+   "Swift's open-source AI address structuring model",
+   "ACI Connetic as a replacement payments hub",
+   "The Temenos FCM AI Agent for sanctions screening"
+  ],
+  "a": 1,
+  "ex": "Swift has released its address structuring model as an open-source AI solution, free of charge, to help the community move free-text addresses into the structured ISO 20022 format with town and country fields, and it notes that many corporate ERP systems store free-text or semi-structured addresses. Swift has since extended the structured-address deadline, with revised dates to be confirmed, so check the current timetable. Treat it as a data-preparation step and keep a human check on low-confidence results.",
+  "losses": [
+   "Kyriba's TAI is described for treasury, payments, risk and working-capital decisions in corporate treasuries, not as an address-structuring tool.",
+   "ACI Connetic is a payments hub platform. Replacing the hub is a far larger decision than structuring addresses.",
+   "The Temenos FCM AI Agent targets financial-crime screening such as sanctions alerts, not address structuring."
+  ],
+  "refs": [
+   "Swift",
+   "Kyriba",
+   "ACI Worldwide",
+   "Temenos"
+  ]
  }
 ];
 
 var deepState = { idx: 0, answered: 0, correct: 0 };
 
 function scBlock(name){
-  var s = SCORECARDS[name];
+  var s = SCORECARDS[name], fields = SCORECARD_FIELDS;
+  if(!s){ s = TF_SCORECARDS[name]; fields = TF_FIELDS; }
   if(!s) return '';
-  var rows = SCORECARD_FIELDS.map(function(f){
-    return '<dt>'+f[1]+'</dt><dd'+(f[0]==='n'?' class="avoid"':'')+'>'+s[f[0]]+'</dd>';
-  }).join('');
-  return '<details class="scorecard"><summary>Scorecard: '+name+'</summary><dl>'+rows+'</dl></details>';
+  return '<details class="scorecard"><summary>Scorecard: '+name+'</summary><dl>'+scRows(s, fields)+'</dl></details>';
 }
 
 function renderDeepScenarios(body) {
